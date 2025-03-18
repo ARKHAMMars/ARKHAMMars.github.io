@@ -214,7 +214,8 @@
 <p><strong>▌创新方法</strong></p>
 <ul>
 <li><p><strong>目标融合</strong>：将LLM预测的多个高层任务（如τ₁=煮咖啡，τ₂=做早餐）编码为PDDL联合目标：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(:goal (and (served coffee) (served breakfast)))  </span><br></pre></td></tr></table></figure>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(:goal (and (served coffee) (served breakfast)))  </span><br></pre></td></tr></table></figure>
+</p>
 </li>
 <li><p><strong>动作合并优化</strong>：<br>规划器（Fast Downward）自动识别跨任务共性动作（如”移动到厨房”），合并执行以减少步骤数。</p>
 </li>
