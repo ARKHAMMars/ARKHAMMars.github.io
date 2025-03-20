@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CMY's Blog | CMY's Blog</title><meta name="author" content="Mengyang Cheng"><meta name="copyright" content="Mengyang Cheng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="论文梳理目的利用大语言模型（LLMs）的通用知识，在给定部分任务序列和有限数量提示的情况下，预测一个或多个高层次任务，从而避免智能体一次只计算并执行完成一项任务的动作来提升效率&lt;&#x2F;span&gt; 方法使用规划领域定义语言（PDDL）作为动作语言，并使用快速向下搜索（FD）求解器为任何给定任务生成细粒度的计划。&lt;&#x2F;span&gt; 利用基于家庭任务通用先验知识的数据驱动估计，以及基于特">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CMY's Blog | CMY's Blog</title><meta name="author" content="Mengyang Cheng"><meta name="copyright" content="Mengyang Cheng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="论文梳理目的研究了大语言模型（LLM）是否可用于根据简单的文本描述生成规划领域模型 评估了大语言模型将规划领域的自然语言描述自动转换为规划领域描述语言（PDDL）的能力（main） 基础知识使用以下扩展的 STRIPS 来表示规划问题和领域的内容 STRIPS$\Pi&#x3D;\langle\mathcal&#123;F&#125;, \mathcal&#123;C&#125;, \mathcal&amp;#12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CMY&#39;s Blog">
 <meta property="og:url" content="https://arkham-three.vercel.app/2025/03/18/%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/index.html">
 <meta property="og:site_name" content="CMY&#39;s Blog">
-<meta property="og:description" content="论文梳理目的利用大语言模型（LLMs）的通用知识，在给定部分任务序列和有限数量提示的情况下，预测一个或多个高层次任务，从而避免智能体一次只计算并执行完成一项任务的动作来提升效率&lt;&#x2F;span&gt; 方法使用规划领域定义语言（PDDL）作为动作语言，并使用快速向下搜索（FD）求解器为任何给定任务生成细粒度的计划。&lt;&#x2F;span&gt; 利用基于家庭任务通用先验知识的数据驱动估计，以及基于特">
+<meta property="og:description" content="论文梳理目的研究了大语言模型（LLM）是否可用于根据简单的文本描述生成规划领域模型 评估了大语言模型将规划领域的自然语言描述自动转换为规划领域描述语言（PDDL）的能力（main） 基础知识使用以下扩展的 STRIPS 来表示规划问题和领域的内容 STRIPS$\Pi&#x3D;\langle\mathcal&#123;F&#125;, \mathcal&#123;C&#125;, \mathcal&amp;#12">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://arkham-three.vercel.app/img/butterfly-icon.png">
 <meta property="article:published_time" content="2025-03-18T09:07:32.892Z">
-<meta property="article:modified_time" content="2025-03-18T09:07:32.893Z">
+<meta property="article:modified_time" content="2025-03-20T08:18:30.229Z">
 <meta property="article:author" content="Mengyang Cheng">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://arkham-three.vercel.app/img/butterfly-icon.png"><script type="application/ld+json">{
@@ -17,7 +17,7 @@
   "url": "https://arkham-three.vercel.app/2025/03/18/%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/",
   "image": "https://arkham-three.vercel.app/img/butterfly-icon.png",
   "datePublished": "2025-03-18T09:07:32.892Z",
-  "dateModified": "2025-03-18T09:07:32.893Z",
+  "dateModified": "2025-03-20T08:18:30.229Z",
   "author": [
     {
       "@type": "Person",
@@ -158,346 +158,484 @@
   isHighlightShrink: false,
   isToc: true,
   pageType: 'post'
-}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">CMY's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">CMY's Blog</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Untitled</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-18T09:07:32.892Z" title="Created 2025-03-18 17:07:32">2025-03-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-18T09:07:32.893Z" title="Updated 2025-03-18 17:07:32">2025-03-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="论文梳理"><a href="#论文梳理" class="headerlink" title="论文梳理"></a>论文梳理</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">利用大语言模型（LLMs）的通用知识，在给定部分任务序列和有限数量提示的情况下，预测一个或多个高层次任务，从而避免智能体一次只计算并执行完成一项任务的动作来提升效率</span>&lt;/span&gt;</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">使用规划领域定义语言（PDDL）作为动作语言，并使用快速向下搜索（FD）求解器为任何给定任务生成细粒度的计划。</span>&lt;/span&gt;</p>
-<p><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">利用基于家庭任务通用先验知识的数据驱动估计，以及基于特定领域动作理论的规划这两者的互补优势</span>&lt;/span&gt;</p>
-<p><img src="attachments/FMNZUKE5.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;FMNZUKE5&quot; width=&quot;1696&quot; height=&quot;718&quot; src=&quot;attachments/FMNZUKE5.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><h3 id="LLM的应用"><a href="#LLM的应用" class="headerlink" title="LLM的应用"></a>LLM的应用</h3><ul>
-<li><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">使用不同来源的计划描述，利用LLM生成生成实现目标的“计划”。<br>提示策略来验证和改进以前生成的计划</span>&lt;/span&gt;</li>
-<li>基于 LLM 的摘要可用于感知和场景理解 ，并生成用于规划和机器人作的代码</li>
-</ul>
-<p>问题：LLM 是根据来自 Web 的大量数据进行训练的，以预测接下来可能出现的文本，质疑 LLM 根据先前的领域知识进行规划（经典意义上的）的能力。</p>
-<h3 id="任务预测"><a href="#任务预测" class="headerlink" title="任务预测"></a>任务预测</h3><p>最近的方法：使用深度网络和 LLM 结合</p>
-<p>问题：在简单领域中预测高级任务时其成本高，完成每个此类任务需要额外的规划，或者需要许多示例来预测要执行的一系列更细的操作</p>
-<h3 id="LLMS-amp-PDDL"><a href="#LLMS-amp-PDDL" class="headerlink" title="LLMS &amp; PDDL"></a>LLMS &amp; PDDL</h3><p>最近的论文强调了在复杂领域中将这种规划与 LLM 相结合的必要性\<br>问题：基于深度网络和 LLM 的方法并不适合通过领域知识进行推理进行多步骤、多层次的决策</p>
-<h2 id="问题设置"><a href="#问题设置" class="headerlink" title="问题设置"></a>问题设置</h2><p><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">设想有一个被要求完成一套日常任务的辅助智能体，也就是说，要完成一系列高层次任务</span>&lt;/span&gt;<em><span style="color: initial"><span style="background-color: rgb(255, 255, 255)">R</span>&lt;/span&gt;</em><span style="color: initial"><span style="background-color: rgb(255, 255, 255)">={</span>&lt;/span&gt;<em><span style="color: initial"><span style="background-color: rgb(255, 255, 255)">τ</span>&lt;/span&gt;</em><span style="color: initial"><span style="background-color: rgb(255, 255, 255)">1​,</span>&lt;/span&gt;<em><span style="color: initial"><span style="background-color: rgb(255, 255, 255)">τ</span>&lt;/span&gt;</em><span style="color: initial"><span style="background-color: rgb(255, 255, 255)">2​,…,</span>&lt;/span&gt;<em><span style="color: initial"><span style="background-color: rgb(255, 255, 255)">τn</span>&lt;/span&gt;</em><span style="color: initial"><span style="background-color: rgb(255, 255, 255)">​}</span>&lt;/span&gt;<span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)"> 。</span>&lt;/span&gt;</p>
-<p><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">需要机器人计算并执行一个计划，也就是一系列更细粒度的动作</span>&lt;/span&gt;<span style="color: initial"><span style="background-color: rgb(255, 255, 255)">{</span>&lt;/span&gt;<em><span style="color: initial"><span style="background-color: rgb(255, 255, 255)">a</span>&lt;/span&gt;</em><span style="color: initial"><span style="background-color: rgb(255, 255, 255)">1​,…,</span>&lt;/span&gt;<em><span style="color: initial"><span style="background-color: rgb(255, 255, 255)">ami</span>&lt;/span&gt;</em><span style="color: initial"><span style="background-color: rgb(255, 255, 255)">​​}</span>&lt;/span&gt;</p>
-<h2 id="method"><a href="#method" class="headerlink" title="method"></a>method</h2><h3 id="用于任务预测的大语言模型-lt-span-gt"><a href="#用于任务预测的大语言模型-lt-span-gt" class="headerlink" title="用于任务预测的大语言模型&lt;/span&gt;"></a><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">用于任务预测的大语言模型</span>&lt;/span&gt;</h3><p><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">从作为提示提供的少量任务例程中提取日常所需的任务模式</span>&lt;/span&gt;</p>
-<p><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">使用大语言模型（LLMs）对高层次任务序列进行建模和预测，好处在于：</span>&lt;/span&gt;</p>
-<ul>
-<li><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">发挥通用大语言模型与基于特定领域知识的规划方法的互补优势。</span>&lt;/span&gt;</li>
-<li><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">利用大语言模型的能力，且仅需少量我们所关注的任务例程示例。</span>&lt;/span&gt;</li>
-</ul>
-<h3 id="基于预测目标的行动规划-lt-span-gt"><a href="#基于预测目标的行动规划-lt-span-gt" class="headerlink" title=" 基于预测目标的行动规划&lt;/span&gt;"></a><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)"> 基于预测目标的行动规划</span>&lt;/span&gt;</h3><h4 id="经典规划器-lt-span-gt"><a href="#经典规划器-lt-span-gt" class="headerlink" title="经典规划器&lt;/span&gt;"></a><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">经典规划器</span>&lt;/span&gt;</h4><p>大语言模型（LLM）所预测的任务被视为目标，框架使用一个经典规划器来计算一系列更细粒度的动作执行序列，以便共同实现这些目标。</p>
-<h4 id="PDDL"><a href="#PDDL" class="headerlink" title="PDDL"></a>PDDL</h4><p>对于任何给定的领域，规划领域定义语言（PDDL）中的语句描述了该领域以及有待解决的问题。领域描述D=⟨S,H⟩ 由一个签名s和一个支配领域动态变化的理论H组成。</p>
-<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>问题描述P=⟨O,I,G⟩ 根据特定物体集合O、由流和静态属性的基文字组成的初始状态I ，以及以相关基文字形式呈现的目标状态描述G，对所考虑的特定场景进行了描述。规划任务是计算出一个动作序列π=(a1​,…,aK​) ，使系统从状态I转变为满足G的状态。</p>
-<h4 id="规划算法"><a href="#规划算法" class="headerlink" title="规划算法"></a>规划算法</h4><p>使用处于自动调优配置下的先进的快速向下搜索（FD）系统来计算规划方案 [7]。这个启发式规划器会根据所考虑领域的实例来调整其参数，并且支持不同的启发式方法和选项。们的重点是将规划方案的总成本C降至最低，也就是说，如果cjk​是规划方案πj​中动作ajk​的成本，那么目标就是计算：</p>
-<script type="math/tex; mode=display">
-
-\pi^* = \arg \min _{\pi^j} C(\pi^j), 
-\quad C(\pi^j) = \sum_{k=0}^K c_k^j</script><h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><p><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">执行时间减少了 31%，规划长度缩短了 12%</span>&lt;/span&gt;</p>
-<h1 id="论文精读"><a href="#论文精读" class="headerlink" title="论文精读"></a>论文精读</h1><h2 id="科学问题"><a href="#科学问题" class="headerlink" title="科学问题"></a>科学问题</h2><h3 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h3><p><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">目前辅助智能体执行任务的方式较为单一，效率不高，体现为：</span>&lt;/span&gt;</p>
-<p><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">执行诸如铺床或做早餐等家务任务的辅助智能体，常常一次只计算并执行完成一项任务的动作。</span>&lt;/span&gt;</p>
-<h3 id="潜在改进："><a href="#潜在改进：" class="headerlink" title="潜在改进："></a>潜在改进：</h3><p><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">通过预测即将到来的任务，并计算出能共同完成这些任务的动作序列，可以提高效率</span>&lt;/span&gt;</p>
-<h3 id="现有方法局限性"><a href="#现有方法局限性" class="headerlink" title="现有方法局限性"></a>现有方法局限性</h3><p><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">最近的任务预测方法使用数据驱动的深度网络和大型语言模型（LLMs），但这些方法只是在高层次任务层面进行预测，并且需要大量的训练示例。</span>&lt;/span&gt;</p>
-<p>说明不足在于：</p>
-<ul>
-<li><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">只能处理高层次的任务预测，对于更细致的任务执行规划力有不逮</span>&lt;/span&gt;</li>
-<li><span style="color: rgba(0, 0, 0, 0.85)"><span style="background-color: rgb(255, 255, 255)">对大量训练数据有依赖，这在实际应用中存在数据获取和处理的困难。</span>&lt;/span&gt;</li>
-</ul>
-<h3 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h3><p>1.<strong><span style="color: rgba(0, 0, 0, 0.9)">如何有效结合大型语言模型（LLMs）的通用知识与经典规划系统，以同时实现高层任务预测和细粒度动作规划？</span></strong></p>
-<p>2.<strong><span style="color: rgba(0, 0, 0, 0.9)">如何通过少量提示（few-shot prompting）让LLMs准确预测后续任务序列，避免依赖大规模训练数据？</span></strong></p>
-<p>3.<strong><span style="color: rgba(0, 0, 0, 0.9)">如何将多个高层任务目标联合优化为单一动作序列，显著减少执行时间和动作步骤？</span></strong></p>
-<p>4.<strong><span style="color: rgba(0, 0, 0, 0.9)">如何在动态家庭环境中实现任务执行的自适应性（如中断、重规划）？</span></strong></p>
-<h2 id="解决方案总结"><a href="#解决方案总结" class="headerlink" title="解决方案总结"></a>解决方案总结</h2><h3 id="基于LLM的高层任务预测：零样本与小样本推理"><a href="#基于LLM的高层任务预测：零样本与小样本推理" class="headerlink" title="基于LLM的高层任务预测：零样本与小样本推理"></a><strong>基于LLM的高层任务预测：零样本与小样本推理</strong></h3><p><strong>▌问题背景</strong>\<br>传统任务预测方法依赖大量标注数据训练专用模型（如LSTM），难以适应家庭场景中任务组合的多样性与动态性（如突发任务插入）。</p>
-<p><strong>▌创新方法</strong></p>
-<ul>
-<li><strong>少量提示激活LLM常识</strong>：\<br>向LLM（GPT-4/PaLM）输入3-5个任务序列示例（每个序列约20个任务），利用其预训练知识推断任务关联性（如”洗衣→烘干→熨烫”的时序逻辑）。</li>
-<li><strong>上下文敏感预测</strong>：\<br>动态注入环境状态（如”厨房缺鸡蛋”），引导LLM生成替代任务（如”煮燕麦粥替代煎蛋”）。</li>
-</ul>
-<p><strong>▌结果</strong></p>
-<ul>
-<li><strong>实验H1验证</strong>：在50个任务序列测试集上，GPT-4预测准确率达92%（3-shot），优于PaLM（85%）与GPT-3.5（88%）。</li>
-<li><strong>Section IV-A</strong>：仅需扩展prompt示例即可支持新任务，无需重新训练模型。</li>
-</ul>
-<hr>
-<h3 id="多任务联合符号规划：PDDL动作共享与资源预取"><a href="#多任务联合符号规划：PDDL动作共享与资源预取" class="headerlink" title="多任务联合符号规划：PDDL动作共享与资源预取"></a><strong>多任务联合符号规划：PDDL动作共享与资源预取</strong></h3><p><strong>▌问题背景</strong>\<br>单任务独立规划导致重复动作（如多次进出同一房间），效率低下（论文引言图1案例）。</p>
-<p><strong>▌创新方法</strong></p>
-<ul>
-<li><p><strong>目标融合</strong>：将LLM预测的多个高层任务（如τ₁=煮咖啡，τ₂=做早餐）编码为PDDL联合目标：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(:goal (and (served coffee) (served breakfast)))  </span><br></pre></td></tr></table></figure>
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">CMY's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">CMY's Blog</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Untitled</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-18T09:07:32.892Z" title="Created 2025-03-18 17:07:32">2025-03-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-20T08:18:30.229Z" title="Updated 2025-03-20 16:18:30">2025-03-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="论文梳理"><a href="#论文梳理" class="headerlink" title="论文梳理"></a>论文梳理</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>研究了大语言模型（LLM）是否可用于根据简单的文本描述生成规划领域模型</p>
+<p>评估了大语言模型将规划领域的自然语言描述自动转换为规划领域描述语言（PDDL）的能力（main）</p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>使用以下扩展的 STRIPS 来表示规划问题和领域的内容</p>
+<h3 id="STRIPS"><a href="#STRIPS" class="headerlink" title="STRIPS"></a>STRIPS</h3><pre><code>$\Pi=\langle\mathcal&#123;F&#125;, \mathcal&#123;C&#125;, \mathcal&#123;A&#125;, s_0, S_\*\rangle$
+</code></pre><blockquote>
+<p>F 是一组有限的谓词，用于描述世界。C 是一组有限的常量，表示世界中的对象，可选地包括类型信息。</p>
+</blockquote>
+<p>我们将$\mathcal{F}_g$ 定义为所有基础谓词的集合，即所有变量都被 C 中的合法常量替换的谓词。</p>
+<p>一个状态 s ⊆ $\mathcal{F}_g$是一组基础谓词，用于描述世界的状态，使得当且仅当 f 是关于世界的真实事实时，f ∈ s。</p>
+<h3 id="S"><a href="#S" class="headerlink" title="S"></a>S</h3><p>所有可能状态的集合是 $\mathcal{F}_g$的幂集，表示为 S。</p>
+<h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><p>A 是一组动作模式，其中每个 a ∈ A 是一个三元组⟨pre (a), add (a), del (a)⟩，其中 pre (a) ⊆ $\mathcal{F}$是应用该动作必须满足的谓词集合，add (a) ⊆$\mathcal{F}$ 是应用该动作后变为真的谓词集合，del (a) ⊆ $\mathcal{F}$ 是应用该动作后变为假的谓词集合。</p>
+<p>一个动作模式 a ∈ A 可以通过将 a 中的所有变量替换为 C 中的允许常量来进行基础化。</p>
+<p>我们将 $A_g$定义为所有基础动作的集合。</p>
+<p>对于一个基元动作$a_g \in A_g$以及一个状态$s \in S$，如果$pre_g(a_g) \subseteq s$，我们就称$a_g$在状态$s$中是可应用的。</p>
+<h3 id="状态序列"><a href="#状态序列" class="headerlink" title="状态序列"></a>状态序列</h3><p>在状态$s$中应用一个可应用的基元动作$a<em>g$会得到一个新状态$s[a_g] := (s / del_g(a_g)) \cup add_g(a_g)$。因此，对于问题$\Pi$的一个规划是一个基元动作序列$\pi = (a_1, \cdots, a_n)$，当应用这个动作序列时，它会将初始状态$s_0$转换为$S^*$中的一个目标状态。这个动作序列定义了一个状态序列$S = (s_0, \cdots, s_n)$，使得对于$1 \leq i \leq n$，$s_i = s</em>{i - 1}[a<em>i]$，并且$s_n \in S^*$。问题$\Pi$的所有规划的集合记为$P</em>{\Pi}$。</p>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>一个提升的STRIPS规划问题 $\Pi$ 的规划领域是该问题的谓词和动作模式集合 $D = \langle F, A \rangle$ 。当 $\Pi$ 使用 $D$ 作为其底层领域时，无论该问题的具体对象、初始状态和目标状态（ $C$ 、 $s_0$ 、 $S^*$ ）是什么，我们都称 $\Pi$ 是 $D$的一个问题，并记为 $\Pi_D$ 。</p>
+<h3 id="LLM输入要求"><a href="#LLM输入要求" class="headerlink" title="LLM输入要求"></a>LLM输入要求</h3><p>提示由三个部分组成：（1）一个指令；（2）一组上下文示例；（3）一个期望与上下文示例一致回答的查询。</p>
+<h3 id="转换（PDDL—自然语言）"><a href="#转换（PDDL—自然语言）" class="headerlink" title="转换（PDDL—自然语言）"></a>转换（PDDL—自然语言）</h3><p>我们研究了几种将规划领域描述语言（PDDL）动作模式$(a \in A)$ 转换为其自然语言描述$ (N(a) \in N(A))$ 的策略。每种策略都会生成一类不同的动作模型自然语言表示。</p>
+<ol>
+<li><p><strong>基础描述</strong>$(N_b(A))$ ：基础描述仅包含动作名称、参数、动作的参数类型，以及对动作功能的一行描述，且不明确提及任何谓词。</p>
+<p> 例如：“‘堆叠’（unstack）动作是让一只手将方块(x)从方块(y)上取下。”</p>
 </li>
-<li><p><strong>动作合并优化</strong>：\<br>规划器（Fast Downward）自动识别跨任务共性动作（如”移动到厨房”），合并执行以减少步骤数。</p>
+<li><p><strong>翻转描述</strong>$ (N_f(A))$ ：翻转描述在基础描述的基础上，额外添加了对该动作模式中所有被删除前提条件谓词的描述。也就是说，对于动作模式$(a \in A)，(N_f(a))$ 是在$(N_b(a))$ 的基础上，扩展了对$(pre(a) \cap del(a))$ 中谓词作为前提条件的描述。 提出这类描述的动机是评估对于大语言模型而言，明确发生变化的谓词是否是自然语言描述中最需要包含的重要内容，就如同人们在描述一个领域时可能会认为这些谓词很重要一样。</p>
+<p> 例如：“‘堆叠’（unstack）动作是让一只手将方块(x)从方块(y)上取下，条件是方块(x)顶部无其他方块、位于(y)的上方，且手是空的。”</p>
 </li>
-<li><p><strong>资源预取策略</strong>：\<br>在执行当前任务时携带后续任务所需物品（如整理床铺时携带吸尘器）。</p>
-</li>
-</ul>
-<p><strong>▌结果</strong></p>
-<ul>
-<li><strong>实验H3结果</strong>：在VirtualHome中，联合规划使执行时间减少31%（58s→40s），计划长度减少12%（Section IV）。</li>
-<li><strong>图4对比</strong>：单任务规划需9步完成”整理床铺+打扫房间”，联合规划仅需6步。</li>
-</ul>
-<hr>
-<h3 id="LLM与符号规划的互补架构：开放知识与物理约束协同"><a href="#LLM与符号规划的互补架构：开放知识与物理约束协同" class="headerlink" title="LLM与符号规划的互补架构：开放知识与物理约束协同"></a><strong>LLM与符号规划的互补架构：开放知识与物理约束协同</strong></h3><p><strong>▌问题背景</strong>\<br>纯LLM生成动作序列常违反物理规则（如”未拿杯子直接倒水”），而纯符号规划无法灵活适应新任务组合。</p>
-<p><strong>▌创新方法</strong></p>
-<ul>
-<li><p><strong>分层解耦设计</strong>：</p>
-<ul>
-<li><strong>LLM层</strong>：负责高层任务预测（what to do），利用开放知识推断任务关联性。</li>
-<li><strong>规划层</strong>：基于PDDL严格验证动作前提/效果（how to do），确保物理可行性（如”倒水需手持杯子”）。</li>
-</ul>
-</li>
-<li><p><strong>动态重规划机制</strong>：\<br>若动作执行失败（如”冰箱无牛奶”），更新状态并触发LLM生成替代任务（如”制作茶”），重新规划新目标。</p>
-</li>
-</ul>
-<p><strong>▌结果</strong></p>
-<ul>
-<li><strong>实验H4验证</strong>：在10%动作随机失败场景中，系统通过平均1.2次重规划保持91%任务完成率（Section IV）。</li>
-<li><strong>Section III-B</strong>：PDDL定义细粒度动作（如<code>dust</code>需满足<code>(holding mop)</code>和<code>(at_location obj)</code>）。</li>
-</ul>
-<hr>
-<h3 id="效率与可扩展性优势"><a href="#效率与可扩展性优势" class="headerlink" title="效率与可扩展性优势"></a><strong>效率与可扩展性优势</strong></h3><p><strong>▌量化对比</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>指标</th>
-<th>单任务规划</th>
-<th>本框架（联合规划）</th>
-<th>提升比例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>平均执行时间（VirtualHome）</td>
-<td>58s</td>
-<td>40s</td>
-<td>↓31%</td>
-</tr>
-<tr>
-<td>动作步骤数</td>
-<td>112</td>
-<td>79</td>
-<td>↓29%</td>
-</tr>
-<tr>
-<td>任务预测数据需求</td>
-<td>千级标注样本</td>
-<td>3-5个prompt示例</td>
-<td>↓99%</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>▌可扩展性</strong></p>
-<ul>
-<li><strong>新增任务</strong>：仅需在prompt中添加示例（如新增”生日派对准备”任务链），无需修改PDDL域文件。</li>
-<li><strong>环境适应</strong>：通过重规划机制响应物体位置变化（Section III-B）。</li>
-</ul>
-<hr>
-<h3 id="局限性（论文Section-V提及）"><a href="#局限性（论文Section-V提及）" class="headerlink" title="局限性（论文Section V提及）"></a><strong>局限性（论文Section V提及）</strong></h3><ol>
-<li><strong>LLM预测依赖prompt质量</strong>：若prompt未覆盖特定场景（如”维修电器”），可能漏判相关任务。</li>
-<li><strong>符号规划建模成本</strong>：复杂动作（如多机器人协作）需人工编写PDDL，未来可探索LLM辅助生成。</li>
-</ol>
-<h2 id="对比实验"><a href="#对比实验" class="headerlink" title="对比实验"></a>对比实验</h2><h3 id="任务预测能力验证（H1）​"><a href="#任务预测能力验证（H1）​" class="headerlink" title="任务预测能力验证（H1）​"></a><strong><span style="color: rgba(0, 0, 0, 0.9)">任务预测能力验证（H1）​</span></strong></h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th><span style="color: var(--yb-md-th-color)"><span style="background-color: var(--yb-md-th-bg-color)">对比维度</span>&lt;/span&gt;</th>
-<th><span style="color: var(--yb-md-th-color)"><span style="background-color: var(--yb-md-th-bg-color)">本文方法（LLM+Prompt）</span>&lt;/span&gt;</th>
-<th><span style="color: var(--yb-md-th-color)"><span style="background-color: var(--yb-md-th-bg-color)">基线方法（LSTM/GPT-3.5）</span>&lt;/span&gt;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">输入数据</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">3个任务序列示例（3-shot）</span>&lt;/span&gt;</td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">LSTM需1000+标注序列</span>&lt;/span&gt;</td>
-</tr>
-<tr>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">测试场景</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">50个家庭任务序列（每个序列5-8个任务）</span>&lt;/span&gt;</td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">相同测试集</span>&lt;/span&gt;</td>
-</tr>
-<tr>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">评估指标</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">Top-1准确率</span>&lt;/span&gt;</td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">相同指标</span>&lt;/span&gt;</td>
-</tr>
-<tr>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">结果对比</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">​92%（GPT-4）</span>&lt;/span&gt;</td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">LSTM 78% / GPT-3.5 88%</span>&lt;/span&gt;</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong><span style="color: rgba(0, 0, 0, 0.9)">▌实验解析</span></strong><span style="color: rgba(0, 0, 0, 0.9)"><br>论文通过H1验证</span><strong><span style="color: rgba(0, 0, 0, 0.9)">LLM在少量prompt下的任务预测能力</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：</span></p>
-<ul>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">关键发现</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：GPT-4仅需3个示例即可达到92%准确率，比LSTM减少99%数据需求。</span></p>
-</li>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">技术意义</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：证明LLM的开放知识可替代传统数据驱动方法，解决任务预测的高数据依赖问题（Section IV-A）。</span></p>
-</li>
-</ul>
-<hr>
-<h3 id="​上下文敏感预测验证（H2）​"><a href="#​上下文敏感预测验证（H2）​" class="headerlink" title="​上下文敏感预测验证（H2）​"></a><strong><span style="color: rgba(0, 0, 0, 0.9)">​上下文敏感预测验证（H2）​</span></strong></h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th><span style="color: var(--yb-md-th-color)"><span style="background-color: var(--yb-md-th-bg-color)">对比维度</span>&lt;/span&gt;</th>
-<th><span style="color: var(--yb-md-th-color)"><span style="background-color: var(--yb-md-th-bg-color)">本文方法（动态上下文注入）</span>&lt;/span&gt;</th>
-<th><span style="color: var(--yb-md-th-color)"><span style="background-color: var(--yb-md-th-bg-color)">基线方法（规则引擎/无上下文LLM）</span>&lt;/span&gt;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">输入场景</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">资源缺失（如厨房无鸡蛋）+时间约束</span>&lt;/span&gt;</td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">相同场景</span>&lt;/span&gt;</td>
-</tr>
-<tr>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">评估指标</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">替代任务生成成功率</span>&lt;/span&gt;</td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">人工规则覆盖率</span>&lt;/span&gt;</td>
-</tr>
-<tr>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">结果对比</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">​89%​（GPT-4）</span>&lt;/span&gt;</td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">规则引擎62% / 无上下文LLM 58%</span>&lt;/span&gt;</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong><span style="color: rgba(0, 0, 0, 0.9)">▌实验解析</span></strong><span style="color: rgba(0, 0, 0, 0.9)"><br>H2验证</span><strong><span style="color: rgba(0, 0, 0, 0.9)">LLM结合上下文动态调整预测</span></strong><span style="color: rgba(0, 0, 0, 0.9)">的能力：</span></p>
-<ul>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">典型案例</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：当厨房缺鸡蛋时，GPT-4生成”煮燕麦粥”替代”煎蛋”，而规则引擎仅能跳过该任务。</span></p>
-</li>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">技术突破</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：LLM通过自然语言理解环境状态，无需人工定义状态-动作映射规则（Section IV-B）。</span></p>
-</li>
-</ul>
-<hr>
-<h3 id="执行效率优化验证（H3）​"><a href="#执行效率优化验证（H3）​" class="headerlink" title="执行效率优化验证（H3）​"></a><strong><span style="color: rgba(0, 0, 0, 0.9)">执行效率优化验证（H3）​</span></strong></h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th><span style="color: var(--yb-md-th-color)"><span style="background-color: var(--yb-md-th-bg-color)">对比维度</span>&lt;/span&gt;</th>
-<th><span style="color: var(--yb-md-th-color)"><span style="background-color: var(--yb-md-th-bg-color)">本文方法（多任务联合规划）</span>&lt;/span&gt;</th>
-<th><span style="color: var(--yb-md-th-color)"><span style="background-color: var(--yb-md-th-bg-color)">基线方法（单任务串行规划）</span>&lt;/span&gt;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">规划策略</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">PDDL联合目标+资源共享</span>&lt;/span&gt;</td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">独立规划每个任务</span>&lt;/span&gt;</td>
-</tr>
-<tr>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">测试场景</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">VirtualHome多房间复杂任务组合</span>&lt;/span&gt;</td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">相同场景</span>&lt;/span&gt;</td>
-</tr>
-<tr>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">评估指标</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">执行时间（秒）/ 动作步骤数</span>&lt;/span&gt;</td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">相同指标</span>&lt;/span&gt;</td>
-</tr>
-<tr>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">结果对比</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">40s（79步）​</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">58s（112步）</span>&lt;/span&gt;</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong><span style="color: rgba(0, 0, 0, 0.9)">▌实验解析</span></strong><span style="color: rgba(0, 0, 0, 0.9)"><br>H3验证</span><strong><span style="color: rgba(0, 0, 0, 0.9)">多任务联合规划的效率优势</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：</span></p>
-<ul>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">优化机制</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：通过合并跨任务共性动作（如一次厨房访问完成多任务），减少31%执行时间。</span></p>
-</li>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">典型优化</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：在”整理床铺+打扫房间”任务中，预取吸尘器使移动步骤减少40%。</span></p>
-</li>
-</ul>
-<hr>
-<h3 id="动态适应性验证（H4）​"><a href="#动态适应性验证（H4）​" class="headerlink" title="动态适应性验证（H4）​"></a><strong><span style="color: rgba(0, 0, 0, 0.9)">动态适应性验证（H4）​</span></strong></h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th><span style="color: var(--yb-md-th-color)"><span style="background-color: var(--yb-md-th-bg-color)">对比维度</span>&lt;/span&gt;</th>
-<th><span style="color: var(--yb-md-th-color)"><span style="background-color: var(--yb-md-th-bg-color)">本文方法（在线重规划）</span>&lt;/span&gt;</th>
-<th><span style="color: var(--yb-md-th-color)"><span style="background-color: var(--yb-md-th-bg-color)">基线方法（传统重规划）</span>&lt;/span&gt;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">异常场景</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">10%动作随机失败（物品缺失/阻塞）</span>&lt;/span&gt;</td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">相同场景</span>&lt;/span&gt;</td>
-</tr>
-<tr>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">评估指标</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">任务完成率 / 平均重规划耗时</span>&lt;/span&gt;</td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-even)">相同指标</span>&lt;/span&gt;</td>
-</tr>
-<tr>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">结果对比</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">​</span>&lt;/span&gt;<strong><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">91%（1.2s）​</span>&lt;/span&gt;</strong></td>
-<td><span style="color: var(--yb-md-td-color)"><span style="background-color: var(--yb-md-td-bg-color-odd)">67%（4.5s）</span>&lt;/span&gt;</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong><span style="color: rgba(0, 0, 0, 0.9)">▌实验解析</span></strong><span style="color: rgba(0, 0, 0, 0.9)"><br>H4验证</span><strong><span style="color: rgba(0, 0, 0, 0.9)">动态重规划机制</span></strong><span style="color: rgba(0, 0, 0, 0.9)">的鲁棒性：</span></p>
-<ul>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">流程优势</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：当”取牛奶失败”时，系统1秒内生成替代任务”制作茶”，而传统方法需完全重新规划。</span></p>
-</li>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">技术意义</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：LLM与规划器的实时交互显著提升异常处理效率（Section IV-D）。</span></p>
-</li>
-</ul>
-<h2 id="复现难度"><a href="#复现难度" class="headerlink" title="复现难度"></a>复现难度</h2><h3 id="数据集（公开）"><a href="#数据集（公开）" class="headerlink" title="数据集（公开）"></a>数据集（公开）</h3><p><a target="_blank" rel="noopener" href="https://github.com/AnticipateAndAct/AnticipateAndAct/tree/main/PDDL">https://github.com/AnticipateAndAct/AnticipateAndAct/tree/main/PDDL</a></p>
-<h3 id="代码（公开）"><a href="#代码（公开）" class="headerlink" title="代码（公开）"></a>代码（公开）</h3><p><a target="_blank" rel="noopener" href="https://github.com/AnticipateAndAct/AnticipateAndAct/tree/main">https://github.com/AnticipateAndAct/AnticipateAndAct/tree/main</a></p>
-<h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><h4 id="模型调用："><a href="#模型调用：" class="headerlink" title="模型调用："></a><strong><span style="color: rgba(0, 0, 0, 0.9)">模型调用</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：</span></h4><p><span style="color: rgba(0, 0, 0, 0.9)">使用云端LLM API（如GPT-4、PaLM-2），​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">无需本地GPU</span></strong></p>
-<h4 id="符号规划硬件："><a href="#符号规划硬件：" class="headerlink" title="符号规划硬件："></a><strong><span style="color: rgba(0, 0, 0, 0.9)">符号规划硬件：</span></strong></h4><ul>
-<li><p><strong><span style="color: rgba(0, 0, 0, 0.9)">CPU</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：4核以上（推荐Intel i7或同等性能）。</span></p>
-</li>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">内存</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：8GB RAM（复杂任务规划峰值占用≈6GB）。</span></p>
-</li>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">规划器</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：Fast Downward (FD) 在单线程模式下运行，无需GPU加速。</span></p>
-</li>
-</ul>
-<h4 id="仿真环境硬件："><a href="#仿真环境硬件：" class="headerlink" title="仿真环境硬件："></a><strong><span style="color: rgba(0, 0, 0, 0.9)">仿真环境硬件：</span></strong></h4><ul>
-<li><p><strong><span style="color: rgba(0, 0, 0, 0.9)">CPU</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：4核（支持多对象并行交互）</span></p>
-</li>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">GPU</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：可选（非必需，仅渲染时需低端GPU如NVIDIA GTX 1060）</span></p>
-</li>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">内存</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：8GB（实测占用≤4GB）</span></p>
-</li>
-</ul>
-<h3 id="复现难度（简单）"><a href="#复现难度（简单）" class="headerlink" title="复现难度（简单）"></a>复现难度（简单）</h3><p>全部都可直接获得，只需调整环境以及微调即可</p>
-<h1 id="LLM与经典规划系统的桥梁"><a href="#LLM与经典规划系统的桥梁" class="headerlink" title="LLM与经典规划系统的桥梁"></a>LLM与经典规划系统的桥梁</h1><h2 id="分层任务解耦：LLM负责高层预测，规划器处理动作生成"><a href="#分层任务解耦：LLM负责高层预测，规划器处理动作生成" class="headerlink" title="分层任务解耦：LLM负责高层预测，规划器处理动作生成"></a>分层任务解耦：LLM负责高层预测，规划器处理动作生成</h2><p>▌实现机制</p>
-<ul>
-<li>​LLM层：输入部分任务序列（如“煮咖啡→整理床铺”）与上下文（如“厨房无鸡蛋”），预测后续高层任务（如“打扫房间”）。</li>
-<li>​规划层：将预测任务转化为PDDL目标（(:goal (and (clean_room) (make_breakfast)))），由Fast Downward生成细粒度动作序列。</li>
-</ul>
-<h2 id="目标编码与PDDL领域建模"><a href="#目标编码与PDDL领域建模" class="headerlink" title="目标编码与PDDL领域建模"></a>目标编码与PDDL领域建模</h2><p>▌实现机制</p>
-<ul>
-<li>​PDDL领域文件：人工定义动作前提/效果，确保物理可行性。</li>
-<li>​目标融合：将LLM预测的多个任务编码为联合目标，触发跨任务动作合并（如一次移动完成多任务需求）。</li>
-</ul>
-<h2 id="​动态上下文注入与重规划机制"><a href="#​动态上下文注入与重规划机制" class="headerlink" title="​动态上下文注入与重规划机制"></a>​动态上下文注入与重规划机制</h2><p>▌实现机制</p>
-<p>​上下文传递：将环境状态（如物品位置、资源可用性）以自然语言形式注入LLM提示，影响任务预测。</p>
-<p>​异常处理：若动作执行失败（如“取牛奶失败”），更新PDDL初始状态并触发LLM生成替代任务，重新规划。</p>
-<h2 id="​​效率优化：资源共享与动作复用"><a href="#​​效率优化：资源共享与动作复用" class="headerlink" title="​​效率优化：资源共享与动作复用"></a>​​效率优化：资源共享与动作复用</h2><p>▌实现机制</p>
-<ul>
-<li>​资源共享：规划器识别跨任务共性资源需求（如“厨房访问”），合并移动与抓取动作。 ​</li>
-<li>预取策略：在执行当前任务时携带后续任务所需工具（如打扫时携带吸尘器）。</li>
-</ul>
-<h2 id="​​零样本任务扩展：Prompt驱动的领域适应"><a href="#​​零样本任务扩展：Prompt驱动的领域适应" class="headerlink" title="​​零样本任务扩展：Prompt驱动的领域适应"></a>​​零样本任务扩展：Prompt驱动的领域适应</h2><p>▌实现机制</p>
-<ul>
-<li>​Prompt工程：通过添加新任务序列示例（如“生日派对准备”流程），扩展LLM预测能力，无需修改PDDL领域文件。 ​</li>
-<li>开放知识利用：LLM基于常识推断未见过任务的合理顺序（如“装饰房间→准备蛋糕”）。</li>
-</ul>
-<h1 id="混合架构"><a href="#混合架构" class="headerlink" title="混合架构"></a>混合架构</h1><h2 id="分层协同：-lt-span-gt"><a href="#分层协同：-lt-span-gt" class="headerlink" title="分层协同：&lt;/span&gt;"></a><strong><span style="color: rgba(0, 0, 0, 0.9)">分层协同</span></strong><span style="color: rgba(0, 0, 0, 0.9)"><span style="background-color: rgb(252, 252, 252)">：</span>&lt;/span&gt;</h2><ol>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">LLM层</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：零样本预测高层任务（what to do），利用开放知识推断任务关联性。</span></p>
-</li>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">规划层</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：符号化验证与优化动作序列（how to do），确保物理可行性与效率。</span></p>
+<li><p><strong>随机描述</strong>$(N_r(A))$ ：随机描述充当一个随机基线，用于与翻转描述进行比较，同时也作为另一个信息含量更高的基线，用于与基础描述作比较。对于每个动作模式(a)，描述内容包括基础描述(N_b(a))，以及从$(pre(a))、(add(a))和(del(a))$ 中随机采样的$(\vert pre(a) \cap del(a) \vert)$ 个谓词的描述，描述内容取决于该谓词是从前提条件还是效果中采样得到的。</p>
+<p> 例如：“‘堆叠’（unstack）动作是让一只手将方块(x)从方块(y)上取下，条件是手是空的且(x)在(y)上。在该动作执行后，(y)的顶部应该无其他方块。”</p>
 </li>
 </ol>
-<h2 id="关键创新：-lt-span-gt"><a href="#关键创新：-lt-span-gt" class="headerlink" title="关键创新：&lt;/span&gt;"></a><strong><span style="color: rgba(0, 0, 0, 0.9)">关键创新</span></strong><span style="color: rgba(0, 0, 0, 0.9)"><span style="background-color: rgb(252, 252, 252)">：</span>&lt;/span&gt;</h2><ul>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">目标融合</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：将多个预测任务编码为PDDL联合目标，触发跨任务资源共享（动作复用率63%）。</span></p>
+<h3 id="启发式等价性"><a href="#启发式等价性" class="headerlink" title="启发式等价性"></a>启发式等价性</h3><h4 id="核心思想："><a href="#核心思想：" class="headerlink" title="核心思想："></a>核心思想：</h4><p>目标是比较两个领域（D 和 D′）生成的计划集，看它们对于相同的规划问题是否能生成相同的解决方案。规划领域定义了可以用来解决特定问题的动作和状态。当我们有一个原始领域 D和一个重构的领域 D′时，我们想要检查在这两个领域中，规划问题是否能够通过相似的方式解决。</p>
+<h4 id="过程说明："><a href="#过程说明：" class="headerlink" title="过程说明："></a>过程说明：</h4><ol>
+<li><p><strong>规划领域和问题</strong>：</p>
+<ul>
+<li><p>一个<strong>规划领域</strong>（例如 D）是为一组<strong>规划问题</strong>（例如 PD）创建的基础。每个问题隐式地定义了一组可以从该领域中导出的计划。</p>
 </li>
-<li><p><span style="color: rgba(0, 0, 0, 0.9)">​</span><strong><span style="color: rgba(0, 0, 0, 0.9)">动态适配</span></strong><span style="color: rgba(0, 0, 0, 0.9)">：LLM与规划器实时交互，支持上下文敏感预测与在线重规划。</span></p>
+<li><p>领域 D 上的规划问题集为 PD，每个问题 Π∈PD 有一组与之对应的有效计划 PΠ。</p>
 </li>
 </ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://arkham-three.vercel.app">Mengyang Cheng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://arkham-three.vercel.app/2025/03/18/%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/">https://arkham-three.vercel.app/2025/03/18/%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/03/18/Anticipate%20&amp;%20Act/" title="Anticipate &amp; Act : Integrating LLMs and Classical Planning for  Efficient Task Execution in Household Environments笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Anticipate & Act : Integrating LLMs and Classical Planning for  Efficient Task Execution in Household Environments笔记</div></div><div class="info-2"><div class="info-item-1">论文梳理目的利用大语言模型（LLMs）的通用知识，在给定部分任务序列和有限数量提示的情况下，预测一个或多个高层次任务，从而避免智能体一次只计算并执行完成一项任务的动作来提升效率&lt;/span&gt; 方法使用规划领域定义语言（PDDL）作为动作语言，并使用快速向下搜索（FD）求解器为任何给定任务生成细粒度的计划。&lt;/span&gt; 利用基于家庭任务通用先验知识的数据驱动估计，以及基于特定领域动作理论的规划这两者的互补优势&lt;/span&gt;  Related WorkLLM的应用 使用不同来源的计划描述，利用LLM生成生成实现目标的“计划”。提示策略来验证和改进以前生成的计划&lt;/span&gt; 基于 LLM 的摘要可用于感知和场景理解 ，并生成用于规划和机器人作的代码  问题：LLM 是根据来自 Web 的大量数据进行训练的，以预测接下来可能出现的文本，质疑 LLM 根据先前的领域知识进行规划（经典意义上的）的能力。 任务预测最近的方法：使用深度网络和 LLM...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Mengyang Cheng</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">论文梳理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E7%9A%84"><span class="toc-number">1.1.</span> <span class="toc-text">目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Related-Work"><span class="toc-number">1.3.</span> <span class="toc-text">Related Work</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LLM%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.3.1.</span> <span class="toc-text">LLM的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E9%A2%84%E6%B5%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text">任务预测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LLMS-amp-PDDL"><span class="toc-number">1.3.3.</span> <span class="toc-text">LLMS &amp; PDDL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.4.</span> <span class="toc-text">问题设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#method"><span class="toc-number">1.5.</span> <span class="toc-text">method</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E4%BA%8E%E4%BB%BB%E5%8A%A1%E9%A2%84%E6%B5%8B%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-lt-span-gt"><span class="toc-number">1.5.1.</span> <span class="toc-text">用于任务预测的大语言模型&lt;&#x2F;span&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E9%A2%84%E6%B5%8B%E7%9B%AE%E6%A0%87%E7%9A%84%E8%A1%8C%E5%8A%A8%E8%A7%84%E5%88%92-lt-span-gt"><span class="toc-number">1.5.2.</span> <span class="toc-text"> 基于预测目标的行动规划&lt;&#x2F;span&gt;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E8%A7%84%E5%88%92%E5%99%A8-lt-span-gt"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">经典规划器&lt;&#x2F;span&gt;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PDDL"><span class="toc-number">1.5.2.2.</span> <span class="toc-text">PDDL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.5.2.3.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E5%88%92%E7%AE%97%E6%B3%95"><span class="toc-number">1.5.2.4.</span> <span class="toc-text">规划算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Results"><span class="toc-number">1.6.</span> <span class="toc-text">Results</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB"><span class="toc-number">2.</span> <span class="toc-text">论文精读</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%91%E5%AD%A6%E9%97%AE%E9%A2%98"><span class="toc-number">2.1.</span> <span class="toc-text">科学问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.1.1.</span> <span class="toc-text">背景介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BD%9C%E5%9C%A8%E6%94%B9%E8%BF%9B%EF%BC%9A"><span class="toc-number">2.1.2.</span> <span class="toc-text">潜在改进：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89%E6%96%B9%E6%B3%95%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">2.1.3.</span> <span class="toc-text">现有方法局限性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98"><span class="toc-number">2.1.4.</span> <span class="toc-text">核心问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%80%BB%E7%BB%93"><span class="toc-number">2.2.</span> <span class="toc-text">解决方案总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ELLM%E7%9A%84%E9%AB%98%E5%B1%82%E4%BB%BB%E5%8A%A1%E9%A2%84%E6%B5%8B%EF%BC%9A%E9%9B%B6%E6%A0%B7%E6%9C%AC%E4%B8%8E%E5%B0%8F%E6%A0%B7%E6%9C%AC%E6%8E%A8%E7%90%86"><span class="toc-number">2.2.1.</span> <span class="toc-text">基于LLM的高层任务预测：零样本与小样本推理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E4%BB%BB%E5%8A%A1%E8%81%94%E5%90%88%E7%AC%A6%E5%8F%B7%E8%A7%84%E5%88%92%EF%BC%9APDDL%E5%8A%A8%E4%BD%9C%E5%85%B1%E4%BA%AB%E4%B8%8E%E8%B5%84%E6%BA%90%E9%A2%84%E5%8F%96"><span class="toc-number">2.2.2.</span> <span class="toc-text">多任务联合符号规划：PDDL动作共享与资源预取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LLM%E4%B8%8E%E7%AC%A6%E5%8F%B7%E8%A7%84%E5%88%92%E7%9A%84%E4%BA%92%E8%A1%A5%E6%9E%B6%E6%9E%84%EF%BC%9A%E5%BC%80%E6%94%BE%E7%9F%A5%E8%AF%86%E4%B8%8E%E7%89%A9%E7%90%86%E7%BA%A6%E6%9D%9F%E5%8D%8F%E5%90%8C"><span class="toc-number">2.2.3.</span> <span class="toc-text">LLM与符号规划的互补架构：开放知识与物理约束协同</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E7%8E%87%E4%B8%8E%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7%E4%BC%98%E5%8A%BF"><span class="toc-number">2.2.4.</span> <span class="toc-text">效率与可扩展性优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%99%90%E6%80%A7%EF%BC%88%E8%AE%BA%E6%96%87Section-V%E6%8F%90%E5%8F%8A%EF%BC%89"><span class="toc-number">2.2.5.</span> <span class="toc-text">局限性（论文Section V提及）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94%E5%AE%9E%E9%AA%8C"><span class="toc-number">2.3.</span> <span class="toc-text">对比实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E9%A2%84%E6%B5%8B%E8%83%BD%E5%8A%9B%E9%AA%8C%E8%AF%81%EF%BC%88H1%EF%BC%89%E2%80%8B"><span class="toc-number">2.3.1.</span> <span class="toc-text">任务预测能力验证（H1）​</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E6%95%8F%E6%84%9F%E9%A2%84%E6%B5%8B%E9%AA%8C%E8%AF%81%EF%BC%88H2%EF%BC%89%E2%80%8B"><span class="toc-number">2.3.2.</span> <span class="toc-text">​上下文敏感预测验证（H2）​</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E6%95%88%E7%8E%87%E4%BC%98%E5%8C%96%E9%AA%8C%E8%AF%81%EF%BC%88H3%EF%BC%89%E2%80%8B"><span class="toc-number">2.3.3.</span> <span class="toc-text">执行效率优化验证（H3）​</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E9%80%82%E5%BA%94%E6%80%A7%E9%AA%8C%E8%AF%81%EF%BC%88H4%EF%BC%89%E2%80%8B"><span class="toc-number">2.3.4.</span> <span class="toc-text">动态适应性验证（H4）​</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E7%8E%B0%E9%9A%BE%E5%BA%A6"><span class="toc-number">2.4.</span> <span class="toc-text">复现难度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%EF%BC%88%E5%85%AC%E5%BC%80%EF%BC%89"><span class="toc-number">2.4.1.</span> <span class="toc-text">数据集（公开）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%88%E5%85%AC%E5%BC%80%EF%BC%89"><span class="toc-number">2.4.2.</span> <span class="toc-text">代码（公开）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83"><span class="toc-number">2.4.3.</span> <span class="toc-text">实验环境</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%B0%83%E7%94%A8%EF%BC%9A"><span class="toc-number">2.4.3.1.</span> <span class="toc-text">模型调用：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E8%A7%84%E5%88%92%E7%A1%AC%E4%BB%B6%EF%BC%9A"><span class="toc-number">2.4.3.2.</span> <span class="toc-text">符号规划硬件：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83%E7%A1%AC%E4%BB%B6%EF%BC%9A"><span class="toc-number">2.4.3.3.</span> <span class="toc-text">仿真环境硬件：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E7%8E%B0%E9%9A%BE%E5%BA%A6%EF%BC%88%E7%AE%80%E5%8D%95%EF%BC%89"><span class="toc-number">2.4.4.</span> <span class="toc-text">复现难度（简单）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LLM%E4%B8%8E%E7%BB%8F%E5%85%B8%E8%A7%84%E5%88%92%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A1%A5%E6%A2%81"><span class="toc-number">3.</span> <span class="toc-text">LLM与经典规划系统的桥梁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E4%BB%BB%E5%8A%A1%E8%A7%A3%E8%80%A6%EF%BC%9ALLM%E8%B4%9F%E8%B4%A3%E9%AB%98%E5%B1%82%E9%A2%84%E6%B5%8B%EF%BC%8C%E8%A7%84%E5%88%92%E5%99%A8%E5%A4%84%E7%90%86%E5%8A%A8%E4%BD%9C%E7%94%9F%E6%88%90"><span class="toc-number">3.1.</span> <span class="toc-text">分层任务解耦：LLM负责高层预测，规划器处理动作生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81%E4%B8%8EPDDL%E9%A2%86%E5%9F%9F%E5%BB%BA%E6%A8%A1"><span class="toc-number">3.2.</span> <span class="toc-text">目标编码与PDDL领域建模</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%8B%E5%8A%A8%E6%80%81%E4%B8%8A%E4%B8%8B%E6%96%87%E6%B3%A8%E5%85%A5%E4%B8%8E%E9%87%8D%E8%A7%84%E5%88%92%E6%9C%BA%E5%88%B6"><span class="toc-number">3.3.</span> <span class="toc-text">​动态上下文注入与重规划机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%8B%E2%80%8B%E6%95%88%E7%8E%87%E4%BC%98%E5%8C%96%EF%BC%9A%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB%E4%B8%8E%E5%8A%A8%E4%BD%9C%E5%A4%8D%E7%94%A8"><span class="toc-number">3.4.</span> <span class="toc-text">​​效率优化：资源共享与动作复用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%8B%E2%80%8B%E9%9B%B6%E6%A0%B7%E6%9C%AC%E4%BB%BB%E5%8A%A1%E6%89%A9%E5%B1%95%EF%BC%9APrompt%E9%A9%B1%E5%8A%A8%E7%9A%84%E9%A2%86%E5%9F%9F%E9%80%82%E5%BA%94"><span class="toc-number">3.5.</span> <span class="toc-text">​​零样本任务扩展：Prompt驱动的领域适应</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B7%E5%90%88%E6%9E%B6%E6%9E%84"><span class="toc-number">4.</span> <span class="toc-text">混合架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E5%8D%8F%E5%90%8C%EF%BC%9A-lt-span-gt"><span class="toc-number">4.1.</span> <span class="toc-text">分层协同：&lt;&#x2F;span&gt;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%88%9B%E6%96%B0%EF%BC%9A-lt-span-gt"><span class="toc-number">4.2.</span> <span class="toc-text">关键创新：&lt;&#x2F;span&gt;</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/18/%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/" title="Untitled">Untitled</a><time datetime="2025-03-18T09:07:32.892Z" title="Created 2025-03-18 17:07:32">2025-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/18/Anticipate%20&amp;%20Act/" title="Anticipate &amp; Act : Integrating LLMs and Classical Planning for  Efficient Task Execution in Household Environments笔记">Anticipate &amp; Act : Integrating LLMs and Classical Planning for  Efficient Task Execution in Household Environments笔记</a><time datetime="2025-03-18T08:44:56.445Z" title="Created 2025-03-18 16:44:56">2025-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/18/Generalized%20Planning%20in%20PDDL%20Domains%20with%20Pretrained%20Large%20Language%20Models/" title="Generalized Planning in PDDL Domains with Pretrained Large Language Models笔记">Generalized Planning in PDDL Domains with Pretrained Large Language Models笔记</a><time datetime="2025-03-18T08:37:49.943Z" title="Created 2025-03-18 16:37:49">2025-03-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Mengyang Cheng</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+</li>
+<li><p><strong>重构的领域</strong>：</p>
+<ul>
+<li><p>当重构领域 D′ 时，目标是检查在 D′上解决 D中的问题是否能生成相似的计划。</p>
+</li>
+<li><p>重构领域 D′ 应能够表示相同的问题，并生成相同或类似的计划。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>问题转换</strong>：</p>
+<ul>
+<li><p>对于 PD 中的每个问题 Π，我们将其转换为一个新的问题 Π′∈PD′，并且使用 D′作为其底层域。</p>
+</li>
+<li><p>这种转换需要确保 D中的问题和 D′ 中的问题在语义上是等价的，能够生成相同类型的计划。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>检查计划等价性</strong>：</p>
+<ul>
+<li><p>对于 PD中的每个问题 Π，我们需要检查在原始领域 D 和重构领域 D′ 中生成的计划是否相等。</p>
+</li>
+<li><p>具体来说，检查 P⊆PΠ和 P′⊆PΠ′是否成立，即检查 D和 D′是否能生成等价的计划。</p>
+</li>
+<li><p><strong>计划等价性检查</strong>通过验证这些计划是否在两个领域中都有效，通常使用<strong>计划验证器</strong>来高效地进行检查。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>计划验证器</strong>：</p>
+<ul>
+<li><strong>计划验证器</strong>是用来检查一个计划在某个领域中是否有效的工具。如果一个计划在 D 中有效且也在 D′ 中有效，则说明这两个领域在该计划上是等价的。</li>
+</ul>
+</li>
+<li><p><strong>作为启发式的计划等价性</strong>：</p>
+<ul>
+<li><p>这个过程作为评估领域等价性的<strong>启发式方法</strong>。如果在所有相关问题和计划上，等价性检查都通过，那么我们可以认为这两个领域是等价的。</p>
+</li>
+<li><p>如果在某个计划上等价性检查失败（即P⊆PΠ′​ 或 P′⊈PΠ），我们就可以得出结论：这两个领域在计划生成上是<strong>不等价</strong>的。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="baseline-amp-LLM生成"><a href="#baseline-amp-LLM生成" class="headerlink" title="baseline&amp;LLM生成"></a>baseline&amp;LLM生成</h3><p>使用现有的 PDDL 领域作为起点。给定一个起始领域D=⟨F,A⟩</p>
+<p>首先将A中的所有动作模式转换为动作模式的自然语言描述N(A)。</p>
+<p>假设领域F中的谓词列表以及这些谓词的自然语言描述N(F)作为该领域的上下文提供给我们（important）</p>
+<p>自然语言动作N(a)∈N(A)，连同领域谓词规范⟨F,N(F)⟩，被用作上下文学习提示的查询</p>
+<p>对于提示的上下文示例，从当前动作所在领域D之外的动作模式中随机采样其他动作</p>
+<p>然后，一个模型接收这些提示，并将它们转换为一个标记序列T(a)，该序列将a表示为一个 PDDL 动作。尝试将T(a)解析为一个 PDDL 动作a′。</p>
+<p>对于所有成功解析为重构的 PDDL 动作a′的T(a)，我们将它们添加到成功重构的动作集合A′中。</p>
+<p>接下来，对于每个a′∈A′，我们从D创建一个重构的领域D′，方法是将A替换为(A/a)∪a′，其中a是生成a′的原始动作。</p>
+<h3 id="Action-Reconstruction-Error-ARE"><a href="#Action-Reconstruction-Error-ARE" class="headerlink" title="Action Reconstruction Error (ARE)"></a>Action Reconstruction Error (ARE)</h3><p>动作重构误差（ARE）是衡量两个动作模式(a)，$(a’ \in A)$ 差异程度的指标。我们将动作重构误差定义为(a)和(a’)在前提条件和效果方面谓词差异的大小：</p>
+<script type="math/tex; mode=display">ARE(a,a 
+′
+ )=∣pre(a)△pre(a 
+′
+ )∣+∣add(a)△add(a 
+′
+ )∣+∣del(a)△del(a 
+′
+ )∣</script><blockquote>
+<p>其中A△B是对称差集(A/B)∪(B/A)。</p>
+</blockquote>
+<p>这个指标有助于了解（模型输出的）领域与原始领域的接近程度分布情况。</p>
+<p>然而，这个指标并不能很好地衡量实际的领域质量。它没有考虑到这样一个事实，即可以在完全不改变动作含义的情况下，对动作添加或删除前提条件和效果，例如，将一个前提条件中的静态谓词添加为效果。</p>
+<h3 id="启发式领域等价性的规划适用性"><a href="#启发式领域等价性的规划适用性" class="headerlink" title="启发式领域等价性的规划适用性"></a>启发式领域等价性的规划适用性</h3><p>对领域中我们关注的一些问题的若干规划进行检查是可行的。</p>
+<p>领域等价性启发式方法的计算方式如下：</p>
+<ul>
+<li><p>给定一个原始规划领域D、一个重构规划领域D′，以及D的一组可解规划问题PD ，PD中的每个问题Π都可以转化为一个以D′为底层领域的问题Π′ ∈ PD′。</p>
+</li>
+<li><p>对于每对这样的问题Π和Π′，以及它们规划的一些对应子集P ⊆ PΠ和P′ ⊆ PΠ′，我们可以交叉检查是否P ⊆ PΠ′且P′ ⊆ PΠ。对于每个单独的规划，可以使用规划验证器高效地进行测试。</p>
+</li>
+</ul>
+<p>启发式方法，即针对一组规划子集 P 的规划等价性，是真正领域等价的必要条件，其否定形式则是表明真正领域不等价的充分条件。</p>
+<h3 id="结果类别"><a href="#结果类别" class="headerlink" title="结果类别"></a>结果类别</h3><p>四种结果类别（依次检查）</p>
+<ol>
+<li><p><strong>语法错误</strong>：模型生成了语法无效的规划领域描述语言（PDDL）。这种PDDL无法被解析，因而无法评估动作重构误差。子类（按优先级顺序）：</p>
+<p> （1）无PDDL（NoPDDL）：模型未输出任何PDDL；</p>
+<p> （2）括号不匹配（PError）：PDDL中存在括号匹配方面的问题；</p>
+<p> （3）意外标记（UToken）：PDDL解析器在遇到意外标记后解析失败。</p>
+</li>
+<li><p><strong>语义错误</strong>：模型生成了语法有效的PDDL，但该PDDL与预期的问题不匹配。子类：</p>
+<p> （1）类型错误（TError）：模型生成了意外的类型；</p>
+<p> （2）谓词参数错误（PAError）：传递给谓词的变量数量错误；</p>
+<p> （3）动作名称错误（NError）：动作的名称错误；</p>
+<p> （4）不良前提条件（BPError）：PDDL的STRIPS形式不允许存在否定的前提条件，但却出现了这样的情况。</p>
+</li>
+<li><p><strong>不同领域</strong>：模型生成了语法有效的PDDL，该PDDL与原始领域能结合使用，但根据领域等价性启发式方法，底层领域是不同的。动作的行为并非如预期那样，原始领域的规划无法应用于新领域，反之亦然。子类：</p>
+<p> （1）未找到规划（NoPlan）：在新领域的问题上未能找到任何规划；</p>
+<p> （2）新规划应用错误（NPApp）：无法将新规划应用于原始领域；</p>
+<p> （3）原始规划应用错误（OPApp）：原始规划无法应用于新领域。</p>
+</li>
+<li><p><strong>（启发式）等价领域</strong>：模型生成了语法有效的PDDL，根据领域等价性启发式方法，该PDDL与期望的领域能结合使用，原始领域的规划可以应用于新领域，反之亦然。</p>
+</li>
+</ol>
+<p>语法错误优先于语义错误，语义错误又优先于不同领域和等价领域类别，而后两者是相互排斥的。</p>
+<h3 id="贪婪采样法"><a href="#贪婪采样法" class="headerlink" title="贪婪采样法"></a>贪婪采样法</h3><p>语言模型是语言标记的概率预测器。当在语料库C中给出一个标记序列T = (t0, t1, · · · , tn) 时，它会基于模型已训练的数据，为tn+1输出一组预测结果以及相关概率P ⊆ C × ℝ（注：这里的IR应该是指实数集ℝ）。可以使用不同的解码策略，根据这些概率从P中选择一个标记。其中一种策略是贪婪策略，该策略将tn+1设定为P中概率最高的标记。新的tn+1可以附加到T上，然后对下一个标记重复这个过程。T的最大允许长度被称为上下文窗口，它限制了可用于预测的标记数量。</p>
+<p><img src="https://p.ipic.vip/s2s20r.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;ZR3RZUB5&quot; width=&quot;802&quot; height=&quot;846&quot; src=&quot;attachments/ZR3RZUB5.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>数据集<br>积木世界（Blocksworld） —— 5 个谓词，4 个动作：一只机器手试图按照特定的布局将积木堆叠在桌子上。</p>
+<ol>
+<li><p>抓取器（Gripper） —— 4 个谓词，3 个动作：一个机器人使用抓取器将球从一个房间移动到另一个房间。</p>
+</li>
+<li><p>重型物品（Heavy†） —— 5 个谓词，2 个动作：必须根据物品的重量将指定的物品装进一个箱子里。</p>
+</li>
+<li><p>森林（Forest） —— 5 个谓词，2 个动作：徒步旅行者必须在不同的地形上导航到一个地点。</p>
+</li>
+<li><p>物流（Logistics） —— 3 个谓词，6 个动作：必须使用飞机和卡车将物品运输到各个地点。</p>
+</li>
+<li><p>仓库（Depot） —— 6 个谓词，5 个动作：积木世界和物流领域的结合。</p>
+</li>
+<li><p>米科尼克电梯（Miconic） —— 6 个谓词，4 个动作：一部电梯将多名乘客从起始楼层运送到他们想去的楼层。</p>
+</li>
+<li><p>轨道建设（Trackbuilding†） —— 4 个谓词，3 个动作：一个智能体必须为火车建造一条通往给定地点的路径。</p>
+</li>
+<li><p>配送（Delivery） —— 7 个谓词，3 个动作：一名送货员必须从一个基地将报纸送到多个安全的地点。</p>
+</li>
+</ol>
+<h3 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h3><p>在这个实验中，我们只使用基础描述，即只提供动作参数和类型的描述，而不涉及谓词。在生成提示时，每个基础动作描述会被转化为 60 个提示，每个提示都带有 3 个从该动作所在领域之外随机采样的上下文示例。我们注意到，这种采样是对所有类型的动作均匀进行的，唯一的限制是用作上下文的动作不能与我们要生成的动作在同一个领域。我们选择使用 60 个提示，是在实验运行时间和统计显著性之间进行的权衡。经过手动参数搜索后，我们选择使用 3 个上下文示例；进一步增加上下文示例的数量并没有改善结果，而减少到少于 3 个则会导致结果变差。</p>
+<h2 id="未来展望"><a href="#未来展望" class="headerlink" title="未来展望"></a>未来展望</h2><ol>
+<li><p>在选择和调优方面更深入地研究大语言模型的能力；</p>
+</li>
+<li><p>对于基于聊天的大语言模型，使用重新提示来修正 PDDL 中的错误；</p>
+</li>
+<li><p>研究更可靠的任务和指标。</p>
+</li>
+</ol>
+<p>当自然语言描述中包含额外的谓词信息时，编码模型 StarCoder 在某些情况下表现相当不错，我们认为这值得进一步研究编码模型及其能力</p>
+<h1 id="论文精读"><a href="#论文精读" class="headerlink" title="论文精读"></a>论文精读</h1><h2 id="科学问题"><a href="#科学问题" class="headerlink" title="科学问题"></a>科学问题</h2><h3 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h3><p>LLM已显示出能够根据程序的自然语言描述生成高度结构化的类似代码的输出。</p>
+<p>期望大语言模型能够弥合问题的自然语言描述与符号表示之间的差距，它将使符号方法得以大规模应用，并减少对技术专家的依赖。</p>
+<p>将问题的自然语言描述与用于自动规划的准确符号表示联系起来</p>
+<h3 id="现有方法局限"><a href="#现有方法局限" class="headerlink" title="现有方法局限"></a>现有方法局限</h3><p>之前的工作依靠人类专家进行评估,缺少统一的严格的标准以及效率问题</p>
+<h3 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h3><p>1.如何选取实验自然语言来源</p>
+<p>2.如何合理引导LLM使用自然语言生成PDDL域</p>
+<p>3.对照指标的选取</p>
+<p>4.依据创建的评估方法能否更加高效合理的反馈促进LLM形成PDDL域</p>
+<h2 id="解决方案总结"><a href="#解决方案总结" class="headerlink" title="解决方案总结"></a>解决方案总结</h2><h3 id="基于已有PDDL域反推自然语言描述，构建结构化数据集"><a href="#基于已有PDDL域反推自然语言描述，构建结构化数据集" class="headerlink" title="基于已有PDDL域反推自然语言描述，构建结构化数据集"></a><strong>基于已有PDDL域反推自然语言描述，构建结构化数据集</strong></h3><p><strong>方法</strong>：</p>
+<ul>
+<li><p><strong>自然语言描述生成</strong>：</p>
+<ul>
+<li><p><strong>Base类（Nb(A)）</strong>：仅包含动作名称、参数类型和功能描述（如“将块x从块y上取下”），<strong>不明确提及谓词</strong>。</p>
+</li>
+<li><p><strong>Flipped类（Nf(A)）</strong>：在Base基础上，<strong>显式描述被删除的谓词</strong>（如“执行动作前需满足块x在块y上且手为空”）。</p>
+</li>
+<li><p><strong>Random类（Nr(A)）</strong>：随机选择动作的<strong>前提或效果中的部分谓词</strong>（如“执行后块y变为可放置状态”），作为噪声基线。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>数据集构建</strong>：</p>
+<ul>
+<li><p><strong>覆盖9个规划域</strong>：包括经典领域（Blocksworld、Logistics）、复杂领域（Miconic、Depot）及新创领域（Trackbuilding、Heavy+）。</p>
+</li>
+<li><p><strong>新创域的用途</strong>：验证模型对未见领域的泛化能力（如Trackbuilding需动态构建铁路路径）。</p>
+</li>
+<li><p><strong>数据多样性</strong>：每个动作生成60组提示，包含<strong>3个跨域上下文示例</strong>，避免模型过拟合特定领域模式。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>合理性</strong>：</p>
+<ul>
+<li><p><strong>基于已知PDDL确保可验证性</strong>：以已有域为基准，自然语言描述与符号表示严格对应，便于后续自动评估。</p>
+</li>
+<li><p><strong>覆盖多样动作复杂度</strong>：如Logistics含6个动作（复杂运输逻辑），Heavy+仅2个动作（简单装箱规则），验证模型对不同复杂度的适应性。</p>
+</li>
+</ul>
+<h3 id="双指标评估：动作重建误差（ARE）-启发式域等价性"><a href="#双指标评估：动作重建误差（ARE）-启发式域等价性" class="headerlink" title="双指标评估：动作重建误差（ARE）+ 启发式域等价性"></a><strong>双指标评估：动作重建误差（ARE）+ 启发式域等价性</strong></h3><p><strong>方法</strong>：</p>
+<ol>
+<li><p><strong>动作重建误差（ARE）</strong>：</p>
+<ul>
+<li><p><strong>计算方式</strong>：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ARE(a, a&#x27;) = |pre(a) Δ pre(a&#x27;)| + |add(a) Δ add(a&#x27;)| + |del(a) Δ del(a&#x27;)|  </span><br></pre></td></tr></table></figure>
+<p>  其中Δ表示对称差（即不一致的谓词数量）。</p>
+</li>
+<li><p><strong>局限性</strong>：仅衡量<strong>结构差异</strong>，无法捕捉语义等价性（如冗余谓词不影响规划结果）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>启发式域等价性</strong>：</p>
+<ul>
+<li><p><strong>验证流程</strong>：</p>
+<ol>
+<li><p>对每个原始域问题Π，生成对应的生成域问题Π’（保持初始状态与目标不变）。</p>
+</li>
+<li><p>使用K*规划器生成Π的Top-100最优规划，验证其在Π’中的可执行性（通过VAL工具）。</p>
+</li>
+<li><p>若所有原始规划在生成域中有效，且生成域的规划在原始域中也有效，则判定为<strong>启发式等价</strong>。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>优势</strong>：直接验证<strong>规划兼容性</strong>，避免对动作结构的过度敏感。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>互补性</strong>：</p>
+<ul>
+<li><p><strong>ARE定位局部错误</strong>：例如LLaMA-70b的ARE中位数仅为1（接近完美重建），但仍有部分动作因参数类型错误导致语义失效。</p>
+</li>
+<li><p><strong>启发式方法验证全局正确性</strong>：如Depot域中，模型可能遗漏卡车装卸货物的前提（导致ARE=2），但规划验证发现此类错误会破坏全部可行性。</p>
+</li>
+</ul>
+<h3 id="贪婪解码策略优化生成质量"><a href="#贪婪解码策略优化生成质量" class="headerlink" title="贪婪解码策略优化生成质量"></a><strong>贪婪解码策略优化生成质量</strong></h3><p><strong>方法</strong>：</p>
+<ul>
+<li><p><strong>解码策略</strong>：选择<strong>最高概率token</strong>生成PDDL代码，避免Beam Search引入的随机性噪声。</p>
+</li>
+<li><p><strong>上下文学习（In-Context Learning）</strong>：</p>
+<ul>
+<li><p>提示模板示例：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Allowed Predicates: (in-city ?loc - place ?city - city)  </span><br><span class="line">Input: &quot;FLY-AIRPLANE&quot;从机场A飞到机场B。  </span><br><span class="line">PDDL Action: (:action FLY-AIRPLANE ... )  </span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>跨域示例增强泛化</strong>：如将Blocksworld的<code>unstack</code>与Logistics的<code>fly-airplane</code>混合输入，迫使模型学习通用模式。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>优势</strong>：</p>
+<ul>
+<li><p><strong>严格语法要求</strong>：PDDL对括号嵌套、谓词参数数量敏感，贪婪策略减少语法错误（如LLaMA-70b语法错误率仅0.31%）。</p>
+</li>
+<li><p><strong>可控生成</strong>：避免温度参数（Temperature）导致的随机输出，确保生成动作与输入描述严格对应。</p>
+</li>
+</ul>
+<h3 id="四层结果分类：分层过滤错误，聚焦语义验证"><a href="#四层结果分类：分层过滤错误，聚焦语义验证" class="headerlink" title="四层结果分类：分层过滤错误，聚焦语义验证"></a><strong>四层结果分类：分层过滤错误，聚焦语义验证</strong></h3><p><strong>分类层级与子类</strong>：</p>
+<ol>
+<li><p><strong>语法错误（Syntax Error）</strong>：</p>
+<ul>
+<li><p><strong>NoPDDL</strong>：输出非PDDL文本（如LLaMA-7b发生概率16%）。</p>
+</li>
+<li><p><strong>括号不匹配（PError）</strong>：如缺少闭合括号（LLaMA-7b-Chat概率0.78%）。</p>
+</li>
+<li><p><strong>无效Token（UToken）</strong>：如误用“:precondition”标签（StarCoder概率2.34%）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>语义错误（Semantic Error）</strong>：</p>
+<ul>
+<li><p><strong>类型错误（TError）</strong>：如混淆<code>airplane</code>与<code>vehicle</code>类型（LLaMA-13b概率5.62%）。</p>
+</li>
+<li><p><strong>谓词参数错误（PAError）</strong>：如谓词<code>(at ?x)</code>缺少第二个参数（LLaMA-70b概率4.22%）。</p>
+</li>
+<li><p><strong>动作名称错误（NError）</strong>：如将<code>drive-truck</code>误写为<code>move-truck</code>（概率&lt;0.62%）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>不同域（Different Domain）</strong>：</p>
+<ul>
+<li><p><strong>无可行规划（NoPlan）</strong>：生成域无法解决原问题（如LLaMA-13b概率58.59%）。</p>
+</li>
+<li><p><strong>规划兼容性错误</strong>：原始规划在生成域失效（NPApp）或反之（OPApp）（如LLaMA-70b-Chat总概率56.56%）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>启发式等价域（Equivalent Domain）</strong>：</p>
+<ul>
+<li><strong>最高性能模型</strong>：LLaMA-70b生成24.84%等价域，显著优于小模型（如LLaMA-7b仅5.16%）。</li>
+</ul>
+</li>
+</ol>
+<p><strong>分层优势</strong>：</p>
+<ul>
+<li><p><strong>高效排除低级错误</strong>：首层过滤语法错误（如StarCoder语法错误率2.34%），避免无效验证消耗资源。</p>
+</li>
+<li><p><strong>聚焦语义验证</strong>：仅对通过语法和语义检查的生成域执行规划验证，提升评估效率。</p>
+</li>
+</ul>
+<h3 id="实验关键结果"><a href="#实验关键结果" class="headerlink" title="实验关键结果"></a><strong>实验关键结果</strong></h3><ul>
+<li><p><strong>模型规模效应</strong>：LLaMA-70b生成等价域概率（24.84%）远超小模型（如7b仅5.16%），证明大模型在结构化任务中的优势。</p>
+</li>
+<li><p><strong>描述类别影响</strong>：</p>
+<ul>
+<li><p>Base与Flipped类表现接近，说明显式描述删除谓词（Flipped）未显著提升效果。</p>
+</li>
+<li><p>Random类在StarCoder中提升10%，表明噪声信息可能帮助部分模型捕捉关键谓词。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Chat模型劣势</strong>：RLHF微调的LLaMA-Chat模型性能普遍低于Base模型（如70b-Chat等价域概率21.25% vs. 70b的24.84%），推测因对话优化削弱了代码生成能力。</p>
+</li>
+</ul>
+<h2 id="运行顺序"><a href="#运行顺序" class="headerlink" title="运行顺序"></a>运行顺序</h2><p>在这个 <code>NL2PDDL</code> 模块中，整个流程包括多个步骤，从生成 PDDL 提示、评估语言模型、解析输出、计算度量、生成结果图表等，最终目标是自动化地将自然语言描述转化为 PDDL 格式的规划问题，并进行评估。以下是每个步骤的详细讲解：</p>
+<h3 id="生成-PDDL-和计划缓存（Cache-Generation）"><a href="#生成-PDDL-和计划缓存（Cache-Generation）" class="headerlink" title="生成 PDDL 和计划缓存（Cache Generation）"></a><strong>生成 PDDL 和计划缓存（Cache Generation）</strong></h3><ul>
+<li><p><strong>功能</strong>：如果缓存文件（<code>pddl_cache.pkl</code> 和 <code>plan_cache.pkl</code>）不存在，系统会自动生成这些缓存文件，以加速后续的处理。</p>
+</li>
+<li><p><strong>执行顺序</strong>：</p>
+<ul>
+<li><p>首先，检查是否存在 <code>pddl_cache.pkl</code> 文件，如果不存在，调用 <code>generate_pddl_cache()</code> 函数生成 PDDL 缓存文件。</p>
+</li>
+<li><p>然后，检查是否存在 <code>plan_cache.pkl</code> 文件，如果不存在，调用 <code>generate_plan_cache()</code> 函数生成计划缓存文件。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>输入输出</strong>：</p>
+<ul>
+<li><p><strong>输入</strong>：PDDL 文件、问题文件、谓词描述等。</p>
+</li>
+<li><p><strong>输出</strong>：<code>pddl_cache.pkl</code> 和 <code>plan_cache.pkl</code> 文件，分别包含 PDDL 和计划的缓存数据。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>作用</strong>：生成和加载缓存可以加速后续的任务执行，避免重复解析和规划。</p>
+</li>
+</ul>
+<h3 id="生成提示（Prompt-Generation）"><a href="#生成提示（Prompt-Generation）" class="headerlink" title="生成提示（Prompt Generation）"></a><strong>生成提示（Prompt Generation）</strong></h3><ul>
+<li><p><strong>功能</strong>：基于输入的自然语言描述生成 PDDL 规划任务的提示。</p>
+</li>
+<li><p><strong>执行顺序</strong>：</p>
+<ul>
+<li>使用 <code>generate_prompts()</code> 函数生成任务提示，生成的提示将被传递给后续的 LLM 评估模块。</li>
+</ul>
+</li>
+<li><p><strong>输入输出</strong>：</p>
+<ul>
+<li><p><strong>输入</strong>：从 <code>Base-HC.csv</code> 或其他描述文件中读取的数据，以及指定的其他参数（如 <code>num_context_samples</code>, <code>sample_size</code>）。</p>
+</li>
+<li><p><strong>输出</strong>：任务列表，每个任务包括相关的 PDDL 描述和自然语言描述。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>作用</strong>：为语言模型生成任务提示。</p>
+</li>
+</ul>
+<h3 id="评估语言模型（LLM-Evaluation）"><a href="#评估语言模型（LLM-Evaluation）" class="headerlink" title="评估语言模型（LLM Evaluation）"></a><strong>评估语言模型（LLM Evaluation）</strong></h3><ul>
+<li><p><strong>功能</strong>：使用指定的语言模型（如 <code>bigcode/starcoder</code>, <code>meta-llama/llama-2-*</code>）评估生成的任务提示，生成对应的 PDDL 输出。</p>
+</li>
+<li><p><strong>执行顺序</strong>：</p>
+<ul>
+<li>使用 <code>eval_llm_on_prompts()</code> 函数评估语言模型，并将生成的 PDDL 计划存储到 <code>llmOutputs</code> 目录。</li>
+</ul>
+</li>
+<li><p><strong>输入输出</strong>：</p>
+<ul>
+<li><p><strong>输入</strong>：从 <code>generate_prompts()</code> 返回的任务列表和生成参数（如 <code>decoding_method</code>, <code>max_new_tokens</code> 等）。</p>
+</li>
+<li><p><strong>输出</strong>：LLM 生成的 PDDL 计划（以 JSON 格式保存）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>作用</strong>：将自然语言描述转换为 PDDL 计划。</p>
+</li>
+</ul>
+<h3 id="解析-LLM-输出（Parse-LLM-Outputs）"><a href="#解析-LLM-输出（Parse-LLM-Outputs）" class="headerlink" title="解析 LLM 输出（Parse LLM Outputs）"></a><strong>解析 LLM 输出（Parse LLM Outputs）</strong></h3><ul>
+<li><p><strong>功能</strong>：将 LLM 输出的原始 PDDL 计划字符串解析为内部使用的 <strong>Action</strong> 和 <strong>Domain</strong> 对象。</p>
+</li>
+<li><p><strong>执行顺序</strong>：</p>
+<ul>
+<li>使用 <code>parse_llm_outputs_from_file()</code> 函数解析 LLM 的输出文件，将字符串形式的计划转换为对象。</li>
+</ul>
+</li>
+<li><p><strong>输入输出</strong>：</p>
+<ul>
+<li><p><strong>输入</strong>：LLM 输出的 JSON 文件（包含生成的 PDDL 计划）。</p>
+</li>
+<li><p><strong>输出</strong>：解析后的任务列表，每个任务包含解析后的 <strong>Action</strong> 和 <strong>Domain</strong> 对象。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>作用</strong>：将 LLM 的 PDDL 计划解析成系统内部可用的格式，便于后续的度量计算和验证。</p>
+</li>
+</ul>
+<h3 id="计算度量（Metrics-Computation）"><a href="#计算度量（Metrics-Computation）" class="headerlink" title="计算度量（Metrics Computation）"></a><strong>计算度量（Metrics Computation）</strong></h3><ul>
+<li><p><strong>功能</strong>：计算生成的 PDDL 计划和目标计划之间的度量，主要包括 <strong>Action Reconstruction Error</strong> 和 <strong>Heuristic Domain Equivalence Metric</strong>。</p>
+</li>
+<li><p><strong>执行顺序</strong>：</p>
+<ul>
+<li>使用 <code>compute_metrics()</code> 函数计算度量，并更新每个任务的结果。</li>
+</ul>
+</li>
+<li><p><strong>输入输出</strong>：</p>
+<ul>
+<li><p><strong>输入</strong>：解析后的任务列表，包含 PDDL 计划对象（<strong>Action</strong> 和 <strong>Domain</strong>）。</p>
+</li>
+<li><p><strong>输出</strong>：带有度量结果（如 <code>actionDif</code>, <code>workingPlans</code> 等）的更新任务列表。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>作用</strong>：评估生成的 PDDL 计划的质量，并计算与目标计划之间的差异。</p>
+</li>
+</ul>
+<h3 id="保存和处理度量结果（Save-Metric-Results）"><a href="#保存和处理度量结果（Save-Metric-Results）" class="headerlink" title="保存和处理度量结果（Save Metric Results）"></a><strong>保存和处理度量结果（Save Metric Results）</strong></h3><ul>
+<li><p><strong>功能</strong>：将计算的度量结果保存到文件中，以便后续分析。</p>
+</li>
+<li><p><strong>执行顺序</strong>：</p>
+<ul>
+<li>使用 <code>save_metrics_results_file()</code> 函数将度量结果保存为 JSON 文件。</li>
+</ul>
+</li>
+<li><p><strong>输入输出</strong>：</p>
+<ul>
+<li><p><strong>输入</strong>：带有度量结果的任务列表。</p>
+</li>
+<li><p><strong>输出</strong>：保存的 JSON 文件，包含任务的度量结果。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>作用</strong>：将度量结果保存，便于后续的结果分析和可视化。</p>
+</li>
+</ul>
+<h3 id="解析和保存度量结果（Parse-Metric-Results）"><a href="#解析和保存度量结果（Parse-Metric-Results）" class="headerlink" title="解析和保存度量结果（Parse Metric Results）"></a><strong>解析和保存度量结果（Parse Metric Results）</strong></h3><ul>
+<li><p><strong>功能</strong>：对度量结果进行解析并将其转换为适合可视化或进一步分析的格式。</p>
+</li>
+<li><p><strong>执行顺序</strong>：</p>
+<ul>
+<li>使用 <code>parse_metric_results_to_file()</code> 函数解析度量结果，并将其保存为表格或图形。</li>
+</ul>
+</li>
+<li><p><strong>输入输出</strong>：</p>
+<ul>
+<li><p><strong>输入</strong>：度量结果文件。</p>
+</li>
+<li><p><strong>输出</strong>：解析后的度量结果，并生成图表或表格文件。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>作用</strong>：解析度量结果并生成图表或表格进行展示。</p>
+</li>
+</ul>
+<h3 id="生成图表和表格（Plotting-Figures-and-Tables）"><a href="#生成图表和表格（Plotting-Figures-and-Tables）" class="headerlink" title="生成图表和表格（Plotting Figures and Tables）"></a><strong>生成图表和表格（Plotting Figures and Tables）</strong></h3><ul>
+<li><p><strong>功能</strong>：基于度量结果生成可视化图表和表格，帮助分析模型性能。</p>
+</li>
+<li><p><strong>执行顺序</strong>：</p>
+<ul>
+<li>使用 <code>plot_all()</code> 函数生成并保存所有图表和表格。</li>
+</ul>
+</li>
+<li><p><strong>输入输出</strong>：</p>
+<ul>
+<li><p><strong>输入</strong>：计算好的度量结果。</p>
+</li>
+<li><p><strong>输出</strong>：生成的图表和表格文件（如 <code>.png</code>, <code>.csv</code> 文件）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>作用</strong>：通过图表和表格的形式展示度量结果，便于进一步的分析和报告。</p>
+</li>
+</ul>
+<h2 id="复现难度"><a href="#复现难度" class="headerlink" title="复现难度"></a>复现难度</h2><h3 id="代码（公开）"><a href="#代码（公开）" class="headerlink" title="代码（公开）"></a>代码（公开）</h3><p><a target="_blank" rel="noopener" href="https://github.com/IBM/NL2PDDL">https://github.com/IBM/NL2PDDL</a></p>
+<h3 id="数据集（公开）"><a href="#数据集（公开）" class="headerlink" title="数据集（公开）"></a>数据集（公开）</h3><p><a target="_blank" rel="noopener" href="https://github.com/IBM/NL2PDDL/tree/main/data">https://github.com/IBM/NL2PDDL/tree/main/data</a></p>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>模型：调用api</p>
+<p>本地运行：自动化流程，val检查器</p>
+<p>算力要求中等</p>
+<h3 id="复现难度（中等）"><a href="#复现难度（中等）" class="headerlink" title="复现难度（中等）"></a>复现难度（中等）</h3><p>整体自动化配置模块顺序较为复杂，以及测试集较多，对算力也有一定要求</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://arkham-three.vercel.app">Mengyang Cheng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://arkham-three.vercel.app/2025/03/18/%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/">https://arkham-three.vercel.app/2025/03/18/%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/03/18/Anticipate%20&amp;%20Act/" title="Anticipate &amp; Act : Integrating LLMs and Classical Planning for  Efficient Task Execution in Household Environments笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Anticipate & Act : Integrating LLMs and Classical Planning for  Efficient Task Execution in Household Environments笔记</div></div><div class="info-2"><div class="info-item-1">论文梳理目的利用大语言模型（LLMs）的通用知识，在给定部分任务序列和有限数量提示的情况下，预测一个或多个高层次任务，从而避免智能体一次只计算并执行完成一项任务的动作来提升效率&lt;/span&gt; 方法使用规划领域定义语言（PDDL）作为动作语言，并使用快速向下搜索（FD）求解器为任何给定任务生成细粒度的计划。&lt;/span&gt; 利用基于家庭任务通用先验知识的数据驱动估计，以及基于特定领域动作理论的规划这两者的互补优势&lt;/span&gt;  Related WorkLLM的应用 使用不同来源的计划描述，利用LLM生成生成实现目标的“计划”。提示策略来验证和改进以前生成的计划&lt;/span&gt; 基于 LLM 的摘要可用于感知和场景理解 ，并生成用于规划和机器人作的代码  问题：LLM 是根据来自 Web 的大量数据进行训练的，以预测接下来可能出现的文本，质疑 LLM 根据先前的领域知识进行规划（经典意义上的）的能力。 任务预测最近的方法：使用深度网络和 LLM...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Mengyang Cheng</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">论文梳理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E7%9A%84"><span class="toc-number">1.1.</span> <span class="toc-text">目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.2.</span> <span class="toc-text">基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#STRIPS"><span class="toc-number">1.2.1.</span> <span class="toc-text">STRIPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S"><span class="toc-number">1.2.2.</span> <span class="toc-text">S</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A"><span class="toc-number">1.2.3.</span> <span class="toc-text">A</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E5%BA%8F%E5%88%97"><span class="toc-number">1.2.4.</span> <span class="toc-text">状态序列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.2.5.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LLM%E8%BE%93%E5%85%A5%E8%A6%81%E6%B1%82"><span class="toc-number">1.2.6.</span> <span class="toc-text">LLM输入要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%EF%BC%88PDDL%E2%80%94%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%EF%BC%89"><span class="toc-number">1.2.7.</span> <span class="toc-text">转换（PDDL—自然语言）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8F%91%E5%BC%8F%E7%AD%89%E4%BB%B7%E6%80%A7"><span class="toc-number">1.2.8.</span> <span class="toc-text">启发式等价性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%EF%BC%9A"><span class="toc-number">1.2.8.1.</span> <span class="toc-text">核心思想：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-number">1.2.8.2.</span> <span class="toc-text">过程说明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#baseline-amp-LLM%E7%94%9F%E6%88%90"><span class="toc-number">1.3.1.</span> <span class="toc-text">baseline&amp;LLM生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Action-Reconstruction-Error-ARE"><span class="toc-number">1.3.2.</span> <span class="toc-text">Action Reconstruction Error (ARE)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8F%91%E5%BC%8F%E9%A2%86%E5%9F%9F%E7%AD%89%E4%BB%B7%E6%80%A7%E7%9A%84%E8%A7%84%E5%88%92%E9%80%82%E7%94%A8%E6%80%A7"><span class="toc-number">1.3.3.</span> <span class="toc-text">启发式领域等价性的规划适用性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%E7%B1%BB%E5%88%AB"><span class="toc-number">1.3.4.</span> <span class="toc-text">结果类别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%AA%E5%A9%AA%E9%87%87%E6%A0%B7%E6%B3%95"><span class="toc-number">1.3.5.</span> <span class="toc-text">贪婪采样法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">1.4.</span> <span class="toc-text">实验结果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.4.1.</span> <span class="toc-text">实验设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="toc-number">1.5.</span> <span class="toc-text">未来展望</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB"><span class="toc-number">2.</span> <span class="toc-text">论文精读</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%91%E5%AD%A6%E9%97%AE%E9%A2%98"><span class="toc-number">2.1.</span> <span class="toc-text">科学问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.1.1.</span> <span class="toc-text">背景介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89%E6%96%B9%E6%B3%95%E5%B1%80%E9%99%90"><span class="toc-number">2.1.2.</span> <span class="toc-text">现有方法局限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98"><span class="toc-number">2.1.3.</span> <span class="toc-text">核心问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%80%BB%E7%BB%93"><span class="toc-number">2.2.</span> <span class="toc-text">解决方案总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%B7%B2%E6%9C%89PDDL%E5%9F%9F%E5%8F%8D%E6%8E%A8%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E6%8F%8F%E8%BF%B0%EF%BC%8C%E6%9E%84%E5%BB%BA%E7%BB%93%E6%9E%84%E5%8C%96%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">2.2.1.</span> <span class="toc-text">基于已有PDDL域反推自然语言描述，构建结构化数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E6%8C%87%E6%A0%87%E8%AF%84%E4%BC%B0%EF%BC%9A%E5%8A%A8%E4%BD%9C%E9%87%8D%E5%BB%BA%E8%AF%AF%E5%B7%AE%EF%BC%88ARE%EF%BC%89-%E5%90%AF%E5%8F%91%E5%BC%8F%E5%9F%9F%E7%AD%89%E4%BB%B7%E6%80%A7"><span class="toc-number">2.2.2.</span> <span class="toc-text">双指标评估：动作重建误差（ARE）+ 启发式域等价性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%AA%E5%A9%AA%E8%A7%A3%E7%A0%81%E7%AD%96%E7%95%A5%E4%BC%98%E5%8C%96%E7%94%9F%E6%88%90%E8%B4%A8%E9%87%8F"><span class="toc-number">2.2.3.</span> <span class="toc-text">贪婪解码策略优化生成质量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E5%B1%82%E7%BB%93%E6%9E%9C%E5%88%86%E7%B1%BB%EF%BC%9A%E5%88%86%E5%B1%82%E8%BF%87%E6%BB%A4%E9%94%99%E8%AF%AF%EF%BC%8C%E8%81%9A%E7%84%A6%E8%AF%AD%E4%B9%89%E9%AA%8C%E8%AF%81"><span class="toc-number">2.2.4.</span> <span class="toc-text">四层结果分类：分层过滤错误，聚焦语义验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%85%B3%E9%94%AE%E7%BB%93%E6%9E%9C"><span class="toc-number">2.2.5.</span> <span class="toc-text">实验关键结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-number">2.3.</span> <span class="toc-text">运行顺序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90-PDDL-%E5%92%8C%E8%AE%A1%E5%88%92%E7%BC%93%E5%AD%98%EF%BC%88Cache-Generation%EF%BC%89"><span class="toc-number">2.3.1.</span> <span class="toc-text">生成 PDDL 和计划缓存（Cache Generation）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E6%8F%90%E7%A4%BA%EF%BC%88Prompt-Generation%EF%BC%89"><span class="toc-number">2.3.2.</span> <span class="toc-text">生成提示（Prompt Generation）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%88LLM-Evaluation%EF%BC%89"><span class="toc-number">2.3.3.</span> <span class="toc-text">评估语言模型（LLM Evaluation）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90-LLM-%E8%BE%93%E5%87%BA%EF%BC%88Parse-LLM-Outputs%EF%BC%89"><span class="toc-number">2.3.4.</span> <span class="toc-text">解析 LLM 输出（Parse LLM Outputs）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%BA%A6%E9%87%8F%EF%BC%88Metrics-Computation%EF%BC%89"><span class="toc-number">2.3.5.</span> <span class="toc-text">计算度量（Metrics Computation）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E5%92%8C%E5%A4%84%E7%90%86%E5%BA%A6%E9%87%8F%E7%BB%93%E6%9E%9C%EF%BC%88Save-Metric-Results%EF%BC%89"><span class="toc-number">2.3.6.</span> <span class="toc-text">保存和处理度量结果（Save Metric Results）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E5%92%8C%E4%BF%9D%E5%AD%98%E5%BA%A6%E9%87%8F%E7%BB%93%E6%9E%9C%EF%BC%88Parse-Metric-Results%EF%BC%89"><span class="toc-number">2.3.7.</span> <span class="toc-text">解析和保存度量结果（Parse Metric Results）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%9B%BE%E8%A1%A8%E5%92%8C%E8%A1%A8%E6%A0%BC%EF%BC%88Plotting-Figures-and-Tables%EF%BC%89"><span class="toc-number">2.3.8.</span> <span class="toc-text">生成图表和表格（Plotting Figures and Tables）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E7%8E%B0%E9%9A%BE%E5%BA%A6"><span class="toc-number">2.4.</span> <span class="toc-text">复现难度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%88%E5%85%AC%E5%BC%80%EF%BC%89"><span class="toc-number">2.4.1.</span> <span class="toc-text">代码（公开）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%EF%BC%88%E5%85%AC%E5%BC%80%EF%BC%89"><span class="toc-number">2.4.2.</span> <span class="toc-text">数据集（公开）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">2.4.3.</span> <span class="toc-text">环境配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E7%8E%B0%E9%9A%BE%E5%BA%A6%EF%BC%88%E4%B8%AD%E7%AD%89%EF%BC%89"><span class="toc-number">2.4.4.</span> <span class="toc-text">复现难度（中等）</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/18/%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/" title="Untitled">Untitled</a><time datetime="2025-03-18T09:07:32.892Z" title="Created 2025-03-18 17:07:32">2025-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/18/Anticipate%20&amp;%20Act/" title="Anticipate &amp; Act : Integrating LLMs and Classical Planning for  Efficient Task Execution in Household Environments笔记">Anticipate &amp; Act : Integrating LLMs and Classical Planning for  Efficient Task Execution in Household Environments笔记</a><time datetime="2025-03-18T08:44:56.445Z" title="Created 2025-03-18 16:44:56">2025-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/18/Generalized%20Planning%20in%20PDDL%20Domains%20with%20Pretrained%20Large%20Language%20Models/" title="Generalized Planning in PDDL Domains with Pretrained Large Language Models笔记">Generalized Planning in PDDL Domains with Pretrained Large Language Models笔记</a><time datetime="2025-03-18T08:37:49.943Z" title="Created 2025-03-18 16:37:49">2025-03-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Mengyang Cheng</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
   const loadMathjax = () => {
     if (!window.MathJax) {
       window.MathJax = {
