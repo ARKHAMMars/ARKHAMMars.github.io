@@ -7,7 +7,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://arkham-three.vercel.app/img/butterfly-icon.png">
 <meta property="article:published_time" content="2025-04-28T10:43:14.168Z">
-<meta property="article:modified_time" content="2025-04-28T10:46:20.246Z">
+<meta property="article:modified_time" content="2025-04-28T10:48:09.807Z">
 <meta property="article:author" content="Mengyang Cheng">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://arkham-three.vercel.app/img/butterfly-icon.png"><script type="application/ld+json">{
@@ -17,7 +17,7 @@
   "url": "https://arkham-three.vercel.app/2025/04/28/Deep%20High-Resolution%20Representation%20Learning%20for%20Visual%20Recognition/",
   "image": "https://arkham-three.vercel.app/img/butterfly-icon.png",
   "datePublished": "2025-04-28T10:43:14.168Z",
-  "dateModified": "2025-04-28T10:46:20.246Z",
+  "dateModified": "2025-04-28T10:48:09.807Z",
   "author": [
     {
       "@type": "Person",
@@ -158,7 +158,7 @@
   isHighlightShrink: false,
   isToc: true,
   pageType: 'post'
-}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">CMY's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Deep High-Resolution Representation Learning for Visual Recognition笔记</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Deep High-Resolution Representation Learning for Visual Recognition笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-04-28T10:43:14.168Z" title="Created 2025-04-28 18:43:14">2025-04-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-04-28T10:46:20.246Z" title="Updated 2025-04-28 18:46:20">2025-04-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Related-work"><a href="#Related-work" class="headerlink" title="Related work"></a>Related work</h1><p><img src="https://p.ipic.vip/8gig2o.png" alt="image-20250428184329667"><br> LeNet - 5:</p>
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">CMY's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Deep High-Resolution Representation Learning for Visual Recognition笔记</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Deep High-Resolution Representation Learning for Visual Recognition笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-04-28T10:43:14.168Z" title="Created 2025-04-28 18:43:14">2025-04-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-04-28T10:48:09.807Z" title="Updated 2025-04-28 18:48:09">2025-04-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Related-work"><a href="#Related-work" class="headerlink" title="Related work"></a>Related work</h1><p><img src="https://p.ipic.vip/8gig2o.png" alt="image-20250428184329667"><br> LeNet - 5:</p>
 <p>逐渐减小特征图的空间尺寸，将高分辨率到低分辨率的卷积层串联起来，从而得到低分辨率的特征表示，再对其进一步处理用于分类</p>
 <p>高分辨率的特征表示形成：</p>
 <p>采用高分辨率恢复过程，从分类网络或类似分类的网络输出的低分辨率表示中提升特征表示的分辨率</p>
@@ -180,7 +180,7 @@
 <h2 id="三个部分构成"><a href="#三个部分构成" class="headerlink" title="三个部分构成"></a>三个部分构成</h2><p>并行多分辨率卷积、重复的多分辨率融合以及表征头</p>
 <h3 id="并行多分辨率卷积"><a href="#并行多分辨率卷积" class="headerlink" title="并行多分辨率卷积"></a>并行多分辨率卷积</h3><p>从一个高分辨率卷积流作为第一阶段开始，逐渐逐个添加从高分辨率到低分辨率的流，形成新的阶段，并并行连接多分辨率流。</p>
 <p>结果：后面阶段的并行流的分辨率包含了前一阶段的分辨率，以及一个额外的更低的分辨率</p>
-<h3 id="重复的多分辨率融合"><a href="#重复的多分辨率融合" class="headerlink" title="重复的多分辨率融合"></a>重复的多分辨率融合</h3><p>目标：在多分辨率表征之间交换信息，示例如下：<br><img src="https://p.ipic.vip/t1rj0p.png" alt="image-20250428184439456"><br>一个融合3种分辨率表征的例子，输入由三个表征组成：${R<em>{r}^{i}, r = 1, 2, 3}$ ，其中(r)是分辨率索引，相关的输出表征为${R</em>{r}^{o}, r = 1, 2, 3}$ 。每个输出表征是三个输入的变换后表征之和：$R<em>{r}^{o}=f</em>{1r}(R<em>{1}^{i}) + f</em>{2r}(R<em>{2}^{i}) + f</em>{3r}(R<em>{3}^{i})$ 。跨阶段（从第3阶段到第4阶段）的融合有一个额外的输出：$R</em>{4}^{o}=f<em>{14}(R</em>{1}^{i}) + f<em>{24}(R</em>{2}^{i}) + f<em>{34}(R</em>{3}^{i})$ 。</p>
+<h3 id="重复的多分辨率融合"><a href="#重复的多分辨率融合" class="headerlink" title="重复的多分辨率融合"></a>重复的多分辨率融合</h3><p>目标：在多分辨率表征之间交换信息，示例如下：<br><img src="https://p.ipic.vip/t1rj0p.png" alt="image-20250428184439456"><br>一个融合3种分辨率表征的例子，输入由三个表征组成： ${R<em>{r}^{i}, r = 1, 2, 3}$ ，其中(r)是分辨率索引，相关的输出表征为 ${R</em>{r}^{o}, r = 1, 2, 3}$ 。每个输出表征是三个输入的变换后表征之和： $R<em>{r}^{o}=f</em>{1r}(R<em>{1}^{i}) + f</em>{2r}(R<em>{2}^{i}) + f</em>{3r}(R<em>{3}^{i})$ 。跨阶段（从第3阶段到第4阶段）的融合有一个额外的输出： $R</em>{4}^{o}=f<em>{14}(R</em>{1}^{i}) + f<em>{24}(R</em>{2}^{i}) + f<em>{34}(R</em>{3}^{i})$ 。</p>
 <p>变换函数$f<em>{xr}(·)$ 的选择取决于输入分辨率索引(x)和输出分辨率索引(r)。如果(x = r)，$f</em>{xr}(R) = R$ 。如果(x &lt; r)，$f<em>{xr}(R)$ 会通过$(r - s)$个步长为2的(3×3)卷积对输入表征(R)进行下采样。例如，一个步长为2的(3×3)卷积用于2倍下采样，两个连续的步长为2的(3×3)卷积用于4倍下采样。如果(x &gt; r)，$f</em>{xr}(R)$ 会通过双线性上采样对输入表征(R)进行上采样，然后接一个(1×1)卷积来对齐通道数。</p>
 <h3 id="表征头"><a href="#表征头" class="headerlink" title="表征头"></a>表征头</h3><p><img src="https://p.ipic.vip/qxr6o4.png" alt="image-20250428184524492"><br>有三种表征头，如下图所示，分别为HRNetV1、HRNetV2和HRNetV1p。</p>
 <ul>
